@@ -29,6 +29,7 @@
             --debit-color: #1E90FF;
             --delivery-color: #FF6B6B;
             --table-color: #4CAF50;
+            --register-color: #9C27B0;
         }
 
         body {
@@ -376,6 +377,15 @@
             font-style: italic;
         }
 
+        .item-quantity {
+            font-size: 0.9rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+
         .item-price {
             flex: 1;
             text-align: right;
@@ -420,6 +430,127 @@
             border-top: 2px solid var(--accent-color);
             padding-top: 10px;
             margin-top: 10px;
+        }
+
+        /* Área de Caixa */
+        .cash-register-section {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--register-color);
+        }
+
+        .cash-register-title {
+            color: var(--register-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cash-register-status {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .cash-status-item {
+            text-align: center;
+        }
+
+        .cash-status-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .cash-status-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--register-color);
+        }
+
+        .cash-register-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cash-register-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .cash-register-btn.open {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .cash-register-btn.close {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .cash-register-btn.report {
+            background-color: var(--info-color);
+            color: white;
+        }
+
+        .cash-register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cash-register-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .cash-register-change {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--success-color);
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .cash-register-change.active {
+            display: block;
+        }
+
+        .change-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .change-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success-color);
         }
 
         /* Área de Delivery */
@@ -1210,7 +1341,7 @@
             color: #666;
         }
 
-        /* Modal de Sabores - SIMPLIFICADO */
+        /* Modal de Sabores - COM QUANTIDADE */
         .flavors-modal {
             max-width: 500px;
             max-height: 80vh;
@@ -1249,6 +1380,51 @@
             font-weight: 600;
             color: var(--primary-color);
             font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .flavor-quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .quantity-btn.decrease {
+            background: var(--danger-color);
+        }
+
+        .quantity-btn.decrease:hover {
+            background: #d32f2f;
+        }
+
+        .flavor-quantity {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            min-width: 30px;
+            text-align: center;
         }
 
         /* Modal de Entregador */
@@ -1509,6 +1685,50 @@
             background-color: rgba(30, 144, 255, 0.1);
         }
 
+        /* Campo para dinheiro com troco */
+        .cash-change-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light-color);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .cash-change-section.active {
+            display: block;
+        }
+
+        .cash-change-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--cash-color);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .change-display {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid var(--success-color);
+            margin-top: 10px;
+        }
+
+        .change-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .change-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success-color);
+        }
+
         .payment-confirmation-modal {
             display: flex;
             gap: 15px;
@@ -1663,6 +1883,11 @@
             .tables-controls {
                 flex-direction: column;
             }
+            
+            .cash-register-status {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1750,6 +1975,43 @@
                             <div class="day-stat-label">Delivery Hoje</div>
                             <div class="day-stat-value" id="today-delivery-count">0</div>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Área de Caixa -->
+                <div class="cash-register-section" id="cash-register-section">
+                    <h3 class="cash-register-title"><i class="fas fa-cash-register"></i> Controle de Caixa</h3>
+                    
+                    <div class="cash-register-status">
+                        <div class="cash-status-item">
+                            <div class="cash-status-label">Status</div>
+                            <div class="cash-status-value" id="cash-status">FECHADO</div>
+                        </div>
+                        <div class="cash-status-item">
+                            <div class="cash-status-label">Saldo Inicial</div>
+                            <div class="cash-status-value" id="cash-initial-amount">R$ 0,00</div>
+                        </div>
+                        <div class="cash-status-item">
+                            <div class="cash-status-label">Saldo Atual</div>
+                            <div class="cash-status-value" id="cash-current-amount">R$ 0,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cash-register-controls">
+                        <button class="cash-register-btn open" id="open-cash-register-btn">
+                            <i class="fas fa-lock-open"></i> Abrir Caixa
+                        </button>
+                        <button class="cash-register-btn close" id="close-cash-register-btn" disabled>
+                            <i class="fas fa-lock"></i> Fechar Caixa
+                        </button>
+                        <button class="cash-register-btn report" id="cash-register-report-btn">
+                            <i class="fas fa-file-invoice-dollar"></i> Relatório
+                        </button>
+                    </div>
+                    
+                    <div class="cash-register-change" id="cash-change-display">
+                        <div class="change-label">Troco para o Cliente:</div>
+                        <div class="change-value" id="cash-change-amount">R$ 0,00</div>
                     </div>
                 </div>
                 
@@ -1998,6 +2260,35 @@
                 </div>
             </div>
             
+            <!-- Relatório de Caixa -->
+            <div class="financial-summary" id="cash-register-report">
+                <h3 class="category-title"><i class="fas fa-cash-register"></i> Relatório de Caixa</h3>
+                <div class="financial-row">
+                    <span>Total em Dinheiro:</span>
+                    <span id="total-cash-sales">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Total em Cartão:</span>
+                    <span id="total-card-sales">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Total em PIX:</span>
+                    <span id="total-pix-sales">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Total de Saídas do Caixa:</span>
+                    <span id="total-cash-out" class="negative">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Saldo Final no Caixa:</span>
+                    <span id="final-cash-balance">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Diferença de Caixa:</span>
+                    <span id="cash-difference">R$ 0,00</span>
+                </div>
+            </div>
+            
             <div class="sales-table-container">
                 <table class="sales-table" id="sales-table">
                     <thead>
@@ -2078,7 +2369,7 @@
         </div>
     </div>
     
-    <!-- Modal de Sabores (SIMPLIFICADO) -->
+    <!-- Modal de Sabores (COM QUANTIDADE) -->
     <div class="modal-overlay" id="flavors-modal">
         <div class="modal flavors-modal">
             <h3 class="modal-title">
@@ -2226,12 +2517,66 @@
                 </div>
             </div>
             
+            <!-- Campo para dinheiro com troco -->
+            <div class="cash-change-section" id="cash-change-section">
+                <div class="form-group">
+                    <label for="cash-received">Valor Recebido (R$):</label>
+                    <input type="number" id="cash-received" class="cash-change-input" placeholder="0,00" min="0" step="0.01">
+                </div>
+                <div class="change-display">
+                    <div class="change-label">Troco:</div>
+                    <div class="change-amount" id="change-amount">R$ 0,00</div>
+                </div>
+            </div>
+            
             <div class="payment-confirmation-modal">
                 <button class="modal-btn modal-btn-confirm" id="confirm-payment-modal">
                     <i class="fas fa-check-circle"></i> CONFIRMAR VENDA
                 </button>
                 <button class="modal-btn modal-btn-cancel" id="cancel-payment-modal">
                     <i class="fas fa-times-circle"></i> CANCELAR
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Abertura de Caixa -->
+    <div class="modal-overlay" id="open-cash-modal">
+        <div class="modal">
+            <h3 class="modal-title">
+                <i class="fas fa-lock-open"></i> Abertura de Caixa
+            </h3>
+            <p style="margin-bottom: 20px; color: #666;">
+                Informe o valor inicial no caixa:
+            </p>
+            <input type="number" class="modal-input" id="initial-cash-amount" placeholder="Valor inicial em R$" min="0" step="0.01" autofocus>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-confirm" id="confirm-open-cash">
+                    Abrir Caixa
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-open-cash">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Fechamento de Caixa -->
+    <div class="modal-overlay" id="close-cash-modal">
+        <div class="modal">
+            <h3 class="modal-title">
+                <i class="fas fa-lock"></i> Fechamento de Caixa
+            </h3>
+            <p style="margin-bottom: 20px; color: #666;">
+                Informe o valor atual no caixa:
+            </p>
+            <input type="number" class="modal-input" id="final-cash-amount" placeholder="Valor atual em R$" min="0" step="0.01" autofocus>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-confirm" id="confirm-close-cash">
+                    Fechar Caixa
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-close-cash">
+                    Cancelar
                 </button>
             </div>
         </div>
@@ -2286,7 +2631,7 @@
             ]
         };
 
-        // Sabores do cardápio (SIMPLIFICADO)
+        // Sabores do cardápio
         const flavors = [
             { id: 1, name: "Açaí Tropical" },
             { id: 2, name: "Açaí Sonho de Valsa" },
@@ -2335,10 +2680,24 @@
         let currentSaleToCancel = null;
         let selectedAcaiSize = null;
         let selectedFlavor = null;
+        let selectedQuantity = 1;
         let currentSale = null;
         let isDeliveryFlow = false;
         let pendingPrintOrder = null;
         let activeTables = [];
+        
+        // Controle de caixa
+        let cashRegister = {
+            isOpen: false,
+            initialAmount: 0,
+            currentAmount: 0,
+            cashSales: 0,
+            cardSales: 0,
+            pixSales: 0,
+            cashOut: 0,
+            openingTime: null,
+            closingTime: null
+        };
 
         // Configurações de segurança
         const ADMIN_PASSWORD = "admin123";
@@ -2380,6 +2739,11 @@
                 selectedTable = null;
                 activeTables = [];
                 
+                // Fechar caixa se estiver aberto
+                if (cashRegister.isOpen) {
+                    closeCashRegister();
+                }
+                
                 // Limpar localStorage do dia
                 localStorage.removeItem('daily_expenses');
                 localStorage.removeItem('delivery_count');
@@ -2388,6 +2752,7 @@
                 localStorage.removeItem('delivery_driver');
                 localStorage.removeItem('today_sales');
                 localStorage.removeItem('active_tables');
+                localStorage.removeItem('cash_register');
                 
                 // Salvar data do reset
                 localStorage.setItem(LAST_RESET_KEY, today);
@@ -2399,6 +2764,7 @@
                 updateDeliveryDisplay();
                 renderTablesList();
                 updateDayInfo();
+                updateCashRegisterDisplay();
                 
                 console.log("Dados diários resetados para novo dia");
             }
@@ -2436,7 +2802,7 @@
 
         // Atualizar o resumo do pedido
         function updateOrderSummary() {
-            const subtotal = currentOrder.reduce((sum, item) => sum + item.price, 0);
+            const subtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const total = subtotal;
             
             document.getElementById('subtotal').textContent = formatCurrency(subtotal);
@@ -2476,6 +2842,146 @@
             if (deliveryDriverName) {
                 localStorage.setItem('delivery_driver', deliveryDriverName);
             }
+        }
+
+        // Atualizar display do caixa
+        function updateCashRegisterDisplay() {
+            document.getElementById('cash-status').textContent = cashRegister.isOpen ? "ABERTO" : "FECHADO";
+            document.getElementById('cash-status').style.color = cashRegister.isOpen ? "var(--success-color)" : "var(--danger-color)";
+            
+            document.getElementById('cash-initial-amount').textContent = formatCurrency(cashRegister.initialAmount);
+            document.getElementById('cash-current-amount').textContent = formatCurrency(cashRegister.currentAmount);
+            
+            // Habilitar/desabilitar botões
+            document.getElementById('open-cash-register-btn').disabled = cashRegister.isOpen;
+            document.getElementById('close-cash-register-btn').disabled = !cashRegister.isOpen;
+            
+            // Atualizar relatório de caixa
+            updateCashRegisterReport();
+        }
+
+        // Atualizar relatório de caixa
+        function updateCashRegisterReport() {
+            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+            
+            // Calcular totais por forma de pagamento
+            let cashSales = 0;
+            let cardSales = 0;
+            let pixSales = 0;
+            
+            todaySales.forEach(sale => {
+                if (sale.paymentMethod === 'dinheiro') {
+                    cashSales += sale.total;
+                } else if (sale.paymentMethod === 'credito' || sale.paymentMethod === 'debito') {
+                    cardSales += sale.total;
+                } else if (sale.paymentMethod === 'pix') {
+                    pixSales += sale.total;
+                }
+            });
+            
+            // Calcular despesas do dia
+            const dailyExpenses = JSON.parse(localStorage.getItem('daily_expenses') || '[]');
+            const totalCashOut = dailyExpenses.reduce((sum, expense) => sum + expense.value, 0);
+            
+            // Calcular saldo final
+            const finalBalance = cashRegister.initialAmount + cashSales - totalCashOut;
+            
+            // Calcular diferença de caixa
+            const cashDifference = cashRegister.currentAmount - finalBalance;
+            
+            // Atualizar interface
+            document.getElementById('total-cash-sales').textContent = formatCurrency(cashSales);
+            document.getElementById('total-card-sales').textContent = formatCurrency(cardSales);
+            document.getElementById('total-pix-sales').textContent = formatCurrency(pixSales);
+            document.getElementById('total-cash-out').textContent = formatCurrency(totalCashOut);
+            document.getElementById('final-cash-balance').textContent = formatCurrency(finalBalance);
+            document.getElementById('cash-difference').textContent = formatCurrency(cashDifference);
+            document.getElementById('cash-difference').className = cashDifference >= 0 ? 'positive' : 'negative';
+        }
+
+        // Abrir caixa
+        function openCashRegister() {
+            document.getElementById('open-cash-modal').classList.add('active');
+        }
+
+        // Fechar caixa
+        function closeCashRegister() {
+            document.getElementById('close-cash-modal').classList.add('active');
+        }
+
+        // Confirmar abertura de caixa
+        function confirmOpenCash() {
+            const initialAmount = parseFloat(document.getElementById('initial-cash-amount').value);
+            
+            if (isNaN(initialAmount) || initialAmount < 0) {
+                showNotification("Digite um valor válido!", "error");
+                return;
+            }
+            
+            cashRegister = {
+                isOpen: true,
+                initialAmount: initialAmount,
+                currentAmount: initialAmount,
+                cashSales: 0,
+                cardSales: 0,
+                pixSales: 0,
+                cashOut: 0,
+                openingTime: new Date().toISOString(),
+                closingTime: null
+            };
+            
+            // Salvar no localStorage
+            localStorage.setItem('cash_register', JSON.stringify(cashRegister));
+            
+            updateCashRegisterDisplay();
+            document.getElementById('open-cash-modal').classList.remove('active');
+            document.getElementById('initial-cash-amount').value = '';
+            
+            showNotification(`Caixa aberto com R$ ${formatCurrency(initialAmount)}`);
+        }
+
+        // Confirmar fechamento de caixa
+        function confirmCloseCash() {
+            const finalAmount = parseFloat(document.getElementById('final-cash-amount').value);
+            
+            if (isNaN(finalAmount) || finalAmount < 0) {
+                showNotification("Digite um valor válido!", "error");
+                return;
+            }
+            
+            cashRegister.currentAmount = finalAmount;
+            cashRegister.isOpen = false;
+            cashRegister.closingTime = new Date().toISOString();
+            
+            // Salvar no localStorage
+            localStorage.setItem('cash_register', JSON.stringify(cashRegister));
+            
+            // Salvar fechamento no histórico
+            const cashClosings = JSON.parse(localStorage.getItem('cash_closings') || '[]');
+            cashClosings.push({
+                date: new Date().toISOString(),
+                initialAmount: cashRegister.initialAmount,
+                finalAmount: finalAmount,
+                cashSales: cashRegister.cashSales,
+                cardSales: cashRegister.cardSales,
+                pixSales: cashRegister.pixSales,
+                cashOut: cashRegister.cashOut,
+                openingTime: cashRegister.openingTime,
+                closingTime: cashRegister.closingTime
+            });
+            localStorage.setItem('cash_closings', JSON.stringify(cashClosings));
+            
+            updateCashRegisterDisplay();
+            document.getElementById('close-cash-modal').classList.remove('active');
+            document.getElementById('final-cash-amount').value = '';
+            
+            // Mostrar resumo
+            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+            const totalSales = todaySales.reduce((sum, sale) => sum + sale.total, 0);
+            const dailyExpenses = JSON.parse(localStorage.getItem('daily_expenses') || '[]');
+            const totalExpenses = dailyExpenses.reduce((sum, expense) => sum + expense.value, 0);
+            
+            showNotification(`Caixa fechado! Saldo final: ${formatCurrency(finalAmount)}. Total de vendas: ${formatCurrency(totalSales)}. Despesas: ${formatCurrency(totalExpenses)}`);
         }
 
         // Carregar mesas ativas
@@ -2579,6 +3085,7 @@
                         productId: item.productId,
                         name: item.name,
                         price: item.price,
+                        quantity: item.quantity || 1,
                         details: item.details,
                         size: item.size,
                         flavor: item.flavor
@@ -2616,7 +3123,8 @@
                 deliveryCount: 0,
                 deliveryFee: 0,
                 deliveryTotal: 0,
-                deliveryDriver: ""
+                deliveryDriver: "",
+                change: 0
             };
             
             // Mostrar modal de pagamento
@@ -2663,7 +3171,7 @@
             const tableIndex = activeTables.findIndex(t => t.id === selectedTable.id);
             if (tableIndex === -1) return false;
             
-            const orderTotal = currentOrder.reduce((sum, item) => sum + item.price, 0);
+            const orderTotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             const tableOrder = {
                 id: Date.now(),
@@ -2821,11 +3329,17 @@
         // MOSTRAR MODAL DE PAGAMENTO
         function showPaymentModal() {
             selectedPaymentMethod = null;
+            selectedQuantity = 1;
             
             // Limpar seleção anterior
             document.querySelectorAll('.payment-option-modal').forEach(option => {
                 option.classList.remove('selected');
             });
+            
+            // Esconder seção de troco
+            document.getElementById('cash-change-section').classList.remove('active');
+            document.getElementById('cash-received').value = '';
+            document.getElementById('change-amount').textContent = 'R$ 0,00';
             
             document.getElementById('payment-modal').classList.add('active');
         }
@@ -2846,12 +3360,13 @@
         }
 
         // Adicionar item ao pedido
-        function addToOrder(product) {
+        function addToOrder(product, quantity = 1) {
             const orderItem = {
                 id: Date.now(),
                 productId: product.id,
                 name: product.name,
                 price: product.price,
+                quantity: quantity,
                 details: product.flavor ? `Sabor: ${product.flavor}` : '',
                 size: product.size,
                 flavor: product.flavor
@@ -2864,16 +3379,19 @@
             showNotification(`${product.name} adicionado ao pedido!`);
         }
 
-        // Mostrar modal de sabores (SIMPLIFICADO)
+        // Mostrar modal de sabores (COM QUANTIDADE)
         function showFlavorsModal(product) {
             selectedAcaiSize = product;
+            selectedQuantity = 1;
+            selectedFlavor = null;
+            
             document.getElementById('selected-size-info').textContent = 
                 `Tamanho selecionado: ${product.size} - ${product.ml} - ${formatCurrency(product.price)}`;
             
             // Limpar seleção anterior
-            selectedFlavor = null;
             document.querySelectorAll('.flavor-card').forEach(card => {
                 card.classList.remove('selected');
+                card.querySelector('.flavor-quantity').textContent = '1';
             });
             
             document.getElementById('flavors-modal').classList.add('active');
@@ -2884,6 +3402,7 @@
             document.getElementById('flavors-modal').classList.remove('active');
             selectedAcaiSize = null;
             selectedFlavor = null;
+            selectedQuantity = 1;
         }
 
         // Adicionar açaí com sabor ao pedido
@@ -2893,21 +3412,25 @@
                 return;
             }
             
-            const orderItem = {
-                id: Date.now(),
-                productId: selectedAcaiSize.id,
-                name: `${selectedAcaiSize.name} - ${selectedFlavor.name}`,
-                price: selectedAcaiSize.price,
-                details: `Sabor: ${selectedFlavor.name}`,
-                size: selectedAcaiSize.size,
-                flavor: selectedFlavor.name
-            };
+            for (let i = 0; i < selectedQuantity; i++) {
+                const orderItem = {
+                    id: Date.now() + i,
+                    productId: selectedAcaiSize.id,
+                    name: `${selectedAcaiSize.name} - ${selectedFlavor.name}`,
+                    price: selectedAcaiSize.price,
+                    quantity: 1,
+                    details: `Sabor: ${selectedFlavor.name}`,
+                    size: selectedAcaiSize.size,
+                    flavor: selectedFlavor.name
+                };
+                
+                currentOrder.push(orderItem);
+            }
             
-            currentOrder.push(orderItem);
             renderOrderItems();
             updateOrderSummary();
             
-            showNotification(`${selectedAcaiSize.name} - ${selectedFlavor.name} adicionado ao pedido!`);
+            showNotification(`${selectedAcaiSize.name} - ${selectedFlavor.name} (${selectedQuantity}x) adicionado ao pedido!`);
             closeFlavorsModal();
         }
 
@@ -2929,11 +3452,33 @@
             const itemsToRemove = orderItemsContainer.querySelectorAll('.order-item');
             itemsToRemove.forEach(item => item.remove());
             
+            // Agrupar itens iguais
+            const groupedItems = {};
             currentOrder.forEach(item => {
+                const key = `${item.name}|${item.details}`;
+                if (!groupedItems[key]) {
+                    groupedItems[key] = {
+                        ...item,
+                        quantity: 1,
+                        totalPrice: item.price
+                    };
+                } else {
+                    groupedItems[key].quantity += 1;
+                    groupedItems[key].totalPrice += item.price;
+                }
+            });
+            
+            // Renderizar itens agrupados
+            Object.values(groupedItems).forEach(item => {
                 const orderItemElement = document.createElement('div');
                 orderItemElement.className = 'order-item';
                 
-                let itemNameHtml = `<span class="item-name">${item.name}</span>`;
+                let itemNameHtml = `<span class="item-name">${item.name}`;
+                if (item.quantity > 1) {
+                    itemNameHtml += `<span class="item-quantity">${item.quantity}x</span>`;
+                }
+                itemNameHtml += `</span>`;
+                
                 if (item.details) {
                     itemNameHtml += `<div class="item-details">${item.details}</div>`;
                 }
@@ -2942,7 +3487,7 @@
                     <div style="flex: 2;">
                         ${itemNameHtml}
                     </div>
-                    <span class="item-price">${formatCurrency(item.price)}</span>
+                    <span class="item-price">${formatCurrency(item.totalPrice)}</span>
                     <button class="item-remove" data-id="${item.id}">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -2959,6 +3504,21 @@
             });
         }
 
+        // Calcular troco
+        function calculateChange() {
+            const total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const cashReceived = parseFloat(document.getElementById('cash-received').value) || 0;
+            
+            if (cashReceived >= total) {
+                const change = cashReceived - total;
+                document.getElementById('change-amount').textContent = formatCurrency(change);
+                return change;
+            } else {
+                document.getElementById('change-amount').textContent = 'R$ 0,00';
+                return 0;
+            }
+        }
+
         // Registrar venda com forma de pagamento
         function registerOrderWithPayment() {
             if (!selectedPaymentMethod) {
@@ -2972,6 +3532,37 @@
                 return;
             }
             
+            // Calcular troco se for dinheiro
+            let changeAmount = 0;
+            if (selectedPaymentMethod === 'dinheiro') {
+                const cashReceived = parseFloat(document.getElementById('cash-received').value) || 0;
+                const total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                if (cashReceived < total) {
+                    showNotification(`Valor recebido (${formatCurrency(cashReceived)}) é menor que o total (${formatCurrency(total)})!`, "error");
+                    return;
+                }
+                
+                changeAmount = cashReceived - total;
+                
+                // Atualizar caixa
+                if (cashRegister.isOpen) {
+                    cashRegister.cashSales += total;
+                    cashRegister.currentAmount = cashRegister.currentAmount + total - changeAmount;
+                    localStorage.setItem('cash_register', JSON.stringify(cashRegister));
+                    updateCashRegisterDisplay();
+                    
+                    // Mostrar troco no display do caixa
+                    document.getElementById('cash-change-display').classList.add('active');
+                    document.getElementById('cash-change-amount').textContent = formatCurrency(changeAmount);
+                    
+                    // Esconder depois de 10 segundos
+                    setTimeout(() => {
+                        document.getElementById('cash-change-display').classList.remove('active');
+                    }, 10000);
+                }
+            }
+            
             // Salvar pedido atual antes de limpar
             const pedidoParaImpressao = [...currentOrder];
             
@@ -2979,8 +3570,8 @@
                 id: orderCounter++,
                 date: new Date().toISOString(),
                 items: [...currentOrder],
-                subtotal: currentOrder.reduce((sum, item) => sum + item.price, 0),
-                total: currentOrder.reduce((sum, item) => sum + item.price, 0),
+                subtotal: currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                total: currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                 paymentMethod: selectedPaymentMethod,
                 saleType: selectedSaleType,
                 tableName: selectedTable ? selectedTable.name : null,
@@ -2988,7 +3579,9 @@
                 deliveryCount: 0,
                 deliveryFee: 0,
                 deliveryTotal: 0,
-                deliveryDriver: ""
+                deliveryDriver: "",
+                change: changeAmount,
+                cashReceived: selectedPaymentMethod === 'dinheiro' ? parseFloat(document.getElementById('cash-received').value) || 0 : 0
             };
             
             // Limpar pedido atual
@@ -3239,6 +3832,14 @@
             expenses.push(expense);
             localStorage.setItem('daily_expenses', JSON.stringify(expenses));
             
+            // Atualizar caixa
+            if (cashRegister.isOpen) {
+                cashRegister.cashOut += value;
+                cashRegister.currentAmount -= value;
+                localStorage.setItem('cash_register', JSON.stringify(cashRegister));
+                updateCashRegisterDisplay();
+            }
+            
             valueInput.value = '';
             descriptionInput.value = '';
             
@@ -3250,8 +3851,17 @@
         function removeDailyExpense(expenseId) {
             const expenseIndex = dailyExpenses.findIndex(exp => exp.id === expenseId);
             if (expenseIndex !== -1) {
+                const expense = dailyExpenses[expenseIndex];
                 dailyExpenses.splice(expenseIndex, 1);
                 renderDailyExpenses();
+                
+                // Atualizar caixa
+                if (cashRegister.isOpen) {
+                    cashRegister.cashOut -= expense.value;
+                    cashRegister.currentAmount += expense.value;
+                    localStorage.setItem('cash_register', JSON.stringify(cashRegister));
+                    updateCashRegisterDisplay();
+                }
                 
                 // Atualizar localStorage
                 localStorage.setItem('daily_expenses', JSON.stringify(dailyExpenses));
@@ -3325,7 +3935,7 @@
             
             // Seção de Vendas
             csvContent += "VENDAS\n";
-            csvContent += "ID Venda;Data;Hora;Tipo;Itens;Sabor;Tamanho;Quantidade;Valor Unitário;Valor Total;Subtotal;Total;Forma de Pagamento;Mesa/Delivery;Detalhes\n";
+            csvContent += "ID Venda;Data;Hora;Tipo;Itens;Sabor;Tamanho;Quantidade;Valor Unitário;Valor Total;Subtotal;Total;Forma de Pagamento;Mesa/Delivery;Troco;Valor Recebido;Detalhes\n";
             
             sales.forEach(sale => {
                 const date = new Date(sale.date);
@@ -3345,11 +3955,11 @@
                 sale.items.forEach(item => {
                     const flavor = item.flavor || "Não especificado";
                     const size = item.size || "Não especificado";
-                    csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"${item.name}";"${flavor}";${size};1;${item.price.toFixed(2).replace('.', ',')};${item.price.toFixed(2).replace('.', ',')};${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};"${details}"\n`;
+                    csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"${item.name}";"${flavor}";${size};${item.quantity || 1};${item.price.toFixed(2).replace('.', ',')};${(item.price * (item.quantity || 1)).toFixed(2).replace('.', ',')};${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};${(sale.change || 0).toFixed(2).replace('.', ',')};${(sale.cashReceived || 0).toFixed(2).replace('.', ',')};"${details}"\n`;
                 });
                 
                 // Linha resumo da venda
-                csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"RESUMO DA VENDA";;;${sale.items.length};;;${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};"${details}"\n`;
+                csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"RESUMO DA VENDA";;;${sale.items.reduce((sum, item) => sum + (item.quantity || 1), 0)};;;${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};${(sale.change || 0).toFixed(2).replace('.', ',')};${(sale.cashReceived || 0).toFixed(2).replace('.', ',')};"${details}"\n`;
             });
             
             // Seção de Delivery
@@ -3368,6 +3978,19 @@
             dailyExpenses.forEach(expense => {
                 const date = new Date(expense.date);
                 csvContent += `${expense.id};${date.toLocaleDateString('pt-BR')};${date.toLocaleTimeString('pt-BR')};"${expense.description}";${expense.value.toFixed(2).replace('.', ',')}\n`;
+            });
+            
+            // Seção de Caixa
+            const cashClosings = JSON.parse(localStorage.getItem('cash_closings') || '[]');
+            csvContent += "\n\nREGISTROS DE CAIXA\n";
+            csvContent += "Data Abertura;Hora Abertura;Data Fechamento;Hora Fechamento;Saldo Inicial;Saldo Final;Vendas Dinheiro;Vendas Cartão;Vendas PIX;Saídas;Diferença\n";
+            
+            cashClosings.forEach(closing => {
+                const openDate = new Date(closing.openingTime);
+                const closeDate = new Date(closing.closingTime);
+                const difference = closing.finalAmount - (closing.initialAmount + closing.cashSales - closing.cashOut);
+                
+                csvContent += `${openDate.toLocaleDateString('pt-BR')};${openDate.toLocaleTimeString('pt-BR')};${closeDate.toLocaleDateString('pt-BR')};${closeDate.toLocaleTimeString('pt-BR')};${closing.initialAmount.toFixed(2).replace('.', ',')};${closing.finalAmount.toFixed(2).replace('.', ',')};${closing.cashSales.toFixed(2).replace('.', ',')};${closing.cardSales.toFixed(2).replace('.', ',')};${closing.pixSales.toFixed(2).replace('.', ',')};${closing.cashOut.toFixed(2).replace('.', ',')};${difference.toFixed(2).replace('.', ',')}\n`;
             });
             
             // Resumo Geral
@@ -3463,12 +4086,17 @@
                     }
                     
                     txtContent += `Venda #${sale.id} - ${date.toLocaleDateString('pt-BR')} ${date.toLocaleTimeString('pt-BR')}\n`;
-                    txtContent += `Tipo: ${saleType} • Forma de Pagamento: ${paymentMethods[sale.paymentMethod]?.name || 'N/A'}${details}\n`;
+                    txtContent += `Tipo: ${saleType} • Forma de Pagamento: ${paymentMethods[sale.paymentMethod]?.name || 'N/A'}`;
+                    if (sale.paymentMethod === 'dinheiro') {
+                        txtContent += ` • Recebido: ${formatCurrency(sale.cashReceived || 0)} • Troco: ${formatCurrency(sale.change || 0)}`;
+                    }
+                    txtContent += `${details}\n`;
                     txtContent += "-".repeat(50) + "\n";
                     
                     sale.items.forEach(item => {
                         const flavorInfo = item.flavor ? ` [${item.flavor}]` : '';
-                        txtContent += `• ${item.name}${flavorInfo.padEnd(35)} ${formatCurrency(item.price).padStart(15)}\n`;
+                        const quantity = item.quantity > 1 ? ` (${item.quantity}x)` : '';
+                        txtContent += `• ${item.name}${flavorInfo}${quantity.padEnd(35)} ${formatCurrency(item.price * (item.quantity || 1)).padStart(15)}\n`;
                         if (item.details && item.details.includes('Sabor:')) {
                             txtContent += `  ${item.details}\n`;
                         }
@@ -3515,6 +4143,26 @@
                     txtContent += `• ${date.toLocaleDateString('pt-BR')} ${date.toLocaleTimeString('pt-BR')} - ${expense.description.padEnd(40)} ${formatCurrency(expense.value).padStart(15)}\n`;
                 });
                 txtContent += "\n";
+            }
+            
+            // Seção de Caixa
+            const cashClosings = JSON.parse(localStorage.getItem('cash_closings') || '[]');
+            txtContent += "REGISTROS DE CAIXA\n";
+            txtContent += "=".repeat(70) + "\n\n";
+            
+            if (cashClosings.length === 0) {
+                txtContent += "Nenhum registro de caixa encontrado.\n\n";
+            } else {
+                cashClosings.forEach(closing => {
+                    const openDate = new Date(closing.openingTime);
+                    const closeDate = new Date(closing.closingTime);
+                    const difference = closing.finalAmount - (closing.initialAmount + closing.cashSales - closing.cashOut);
+                    
+                    txtContent += `• ${openDate.toLocaleDateString('pt-BR')} ${openDate.toLocaleTimeString('pt-BR')} - ${closeDate.toLocaleDateString('pt-BR')} ${closeDate.toLocaleTimeString('pt-BR')}\n`;
+                    txtContent += `  Saldo Inicial: ${formatCurrency(closing.initialAmount).padStart(15)} | Saldo Final: ${formatCurrency(closing.finalAmount).padStart(15)}\n`;
+                    txtContent += `  Vendas Dinheiro: ${formatCurrency(closing.cashSales).padStart(15)} | Vendas Cartão: ${formatCurrency(closing.cardSales).padStart(15)} | Vendas PIX: ${formatCurrency(closing.pixSales).padStart(15)}\n`;
+                    txtContent += `  Saídas: ${formatCurrency(closing.cashOut).padStart(15)} | Diferença: ${formatCurrency(difference).padStart(15)} ${difference >= 0 ? '(Sobra)' : '(Falta)'}\n\n`;
+                });
             }
             
             // Resumo Geral
@@ -3646,6 +4294,8 @@
                     localStorage.removeItem('delivery_fee');
                     localStorage.removeItem('delivery_driver');
                     localStorage.removeItem('active_tables');
+                    localStorage.removeItem('cash_register');
+                    localStorage.removeItem('cash_closings');
                     localStorage.removeItem(LAST_RESET_KEY);
                     
                     orderCounter = 1;
@@ -3659,6 +4309,17 @@
                     deliveryDriverName = "";
                     selectedTable = null;
                     activeTables = [];
+                    cashRegister = {
+                        isOpen: false,
+                        initialAmount: 0,
+                        currentAmount: 0,
+                        cashSales: 0,
+                        cardSales: 0,
+                        pixSales: 0,
+                        cashOut: 0,
+                        openingTime: null,
+                        closingTime: null
+                    };
                     
                     showNotification("Todos os dados foram apagados com sucesso!", "warning");
                     
@@ -3670,6 +4331,7 @@
                         updateDeliveryDisplay();
                         renderTablesList();
                         updateDayInfo();
+                        updateCashRegisterDisplay();
                     }
                     if (document.getElementById('reports-container').classList.contains('active')) {
                         loadSalesReport();
@@ -3731,7 +4393,8 @@
                 
                 // Resumo dos itens
                 let itemsSummary = sale.items.map(item => {
-                    return item.flavor ? `${item.name} [${item.flavor}]` : item.name;
+                    const quantity = item.quantity > 1 ? ` (${item.quantity}x)` : '';
+                    return item.flavor ? `${item.name} [${item.flavor}]${quantity}` : `${item.name}${quantity}`;
                 }).join(', ');
                 
                 if (itemsSummary.length > 40) {
@@ -3756,6 +4419,15 @@
                     details = '<span style="color: var(--info-color);"><i class="fas fa-store"></i> Retirada</span>';
                 }
                 
+                // Adicionar info de troco se for dinheiro
+                let paymentInfo = `<span style="color: ${paymentMethod.color}; font-weight: 600;">
+                    <i class="fas ${paymentMethod.icon}"></i> ${paymentMethod.name}
+                </span>`;
+                
+                if (sale.paymentMethod === 'dinheiro' && sale.change > 0) {
+                    paymentInfo += `<br><small style="color: var(--success-color);">Troco: ${formatCurrency(sale.change)}</small>`;
+                }
+                
                 row.innerHTML = `
                     <td>${sale.id}</td>
                     <td>${formatDate(sale.date)}</td>
@@ -3764,13 +4436,9 @@
                             <i class="fas ${saleType.icon}"></i> ${saleType.name}
                         </span>
                     </td>
-                    <td>${itemsSummary} (${sale.items.length} itens)</td>
+                    <td>${itemsSummary} (${sale.items.reduce((sum, item) => sum + (item.quantity || 1), 0)} itens)</td>
                     <td>${formatCurrency(sale.total)}</td>
-                    <td>
-                        <span style="color: ${paymentMethod.color}; font-weight: 600;">
-                            <i class="fas ${paymentMethod.icon}"></i> ${paymentMethod.name}
-                        </span>
-                    </td>
+                    <td>${paymentInfo}</td>
                     <td>${details}</td>
                     <td>
                         <button class="cancel-sale-btn" data-id="${sale.id}">
@@ -3888,6 +4556,9 @@
             
             document.getElementById('total-profit').textContent = formatCurrency(profitTotal);
             document.getElementById('total-profit').className = profitTotal >= 0 ? 'financial-total positive' : 'financial-total negative';
+            
+            // Atualizar relatório de caixa
+            updateCashRegisterReport();
         }
 
         // Mostrar notificação
@@ -3948,11 +4619,29 @@
                 `;
             }
             
+            // Agrupar itens iguais
+            const groupedItems = {};
             pedidoParaImprimir.forEach(item => {
+                const key = `${item.name}|${item.details}`;
+                if (!groupedItems[key]) {
+                    groupedItems[key] = {
+                        ...item,
+                        quantity: 1,
+                        totalPrice: item.price
+                    };
+                } else {
+                    groupedItems[key].quantity += 1;
+                    groupedItems[key].totalPrice += item.price;
+                }
+            });
+            
+            // Adicionar itens agrupados
+            Object.values(groupedItems).forEach(item => {
+                const quantity = item.quantity > 1 ? ` (${item.quantity}x)` : '';
                 printContent += `
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>${item.name}</span>
-                        <span>${formatCurrency(item.price)}</span>
+                        <span>${item.name}${quantity}</span>
+                        <span>${formatCurrency(item.totalPrice)}</span>
                     </div>
                 `;
                 
@@ -3987,6 +4676,7 @@
                         <style>
                             @media print {
                                 body { margin: 0; padding: 0; }
+                                @page { margin: 0; }
                             }
                         </style>
                     </head>
@@ -4059,7 +4749,7 @@
                 bebidasContainer.appendChild(productElement);
             });
             
-            // Sabores no modal (SIMPLIFICADO)
+            // Sabores no modal (COM QUANTIDADE)
             flavors.forEach(flavor => {
                 const flavorElement = document.createElement('div');
                 flavorElement.className = 'flavor-card';
@@ -4067,17 +4757,58 @@
                 
                 flavorElement.innerHTML = `
                     <div class="flavor-name">${flavor.name}</div>
+                    <div class="flavor-quantity-controls">
+                        <button class="quantity-btn decrease" data-id="${flavor.id}">-</button>
+                        <span class="flavor-quantity" data-id="${flavor.id}">1</span>
+                        <button class="quantity-btn" data-id="${flavor.id}">+</button>
+                    </div>
                 `;
                 
-                flavorElement.addEventListener('click', () => {
-                    // Remover seleção anterior
-                    document.querySelectorAll('.flavor-card').forEach(card => {
-                        card.classList.remove('selected');
-                    });
-                    
-                    // Selecionar este sabor
-                    flavorElement.classList.add('selected');
-                    selectedFlavor = flavor;
+                // Event listener para selecionar sabor
+                flavorElement.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('quantity-btn')) {
+                        // Remover seleção anterior
+                        document.querySelectorAll('.flavor-card').forEach(card => {
+                            card.classList.remove('selected');
+                        });
+                        
+                        // Selecionar este sabor
+                        flavorElement.classList.add('selected');
+                        selectedFlavor = flavor;
+                        
+                        // Atualizar quantidade selecionada
+                        const quantityElement = flavorElement.querySelector('.flavor-quantity');
+                        selectedQuantity = parseInt(quantityElement.textContent);
+                    }
+                });
+                
+                // Event listeners para botões de quantidade
+                const decreaseBtn = flavorElement.querySelector('.decrease');
+                const increaseBtn = flavorElement.querySelector('.quantity-btn:not(.decrease)');
+                const quantityElement = flavorElement.querySelector('.flavor-quantity');
+                
+                decreaseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    let quantity = parseInt(quantityElement.textContent);
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityElement.textContent = quantity;
+                        if (flavorElement.classList.contains('selected')) {
+                            selectedQuantity = quantity;
+                        }
+                    }
+                });
+                
+                increaseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    let quantity = parseInt(quantityElement.textContent);
+                    if (quantity < 10) { // Limite máximo de 10
+                        quantity++;
+                        quantityElement.textContent = quantity;
+                        if (flavorElement.classList.contains('selected')) {
+                            selectedQuantity = quantity;
+                        }
+                    }
                 });
                 
                 flavorsGrid.appendChild(flavorElement);
@@ -4131,6 +4862,7 @@
                 loadDailyExpenses();
                 loadDeliveryData();
                 loadActiveTables();
+                loadCashRegister();
                 updateDayInfo();
             }
         }
@@ -4163,6 +4895,15 @@
                 deliveryDriverName = savedDriver;
             }
             updateDeliveryDisplay();
+        }
+
+        // Carregar dados do caixa
+        function loadCashRegister() {
+            const savedCashRegister = JSON.parse(localStorage.getItem('cash_register') || 'null');
+            if (savedCashRegister) {
+                cashRegister = savedCashRegister;
+            }
+            updateCashRegisterDisplay();
         }
 
         // Inicializar event listeners
@@ -4201,6 +4942,16 @@
             document.getElementById('refresh-tables-btn').addEventListener('click', function() {
                 loadActiveTables();
                 showNotification("Lista de mesas atualizada!");
+            });
+            
+            // Botões de Caixa
+            document.getElementById('open-cash-register-btn').addEventListener('click', openCashRegister);
+            document.getElementById('close-cash-register-btn').addEventListener('click', closeCashRegister);
+            document.getElementById('cash-register-report-btn').addEventListener('click', function() {
+                switchTab('reports');
+                setTimeout(() => {
+                    document.getElementById('cash-register-report').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
             });
             
             // Botão para adicionar valor avulso
@@ -4318,8 +5069,19 @@
                     
                     this.classList.add('selected');
                     selectedPaymentMethod = this.getAttribute('data-method');
+                    
+                    // Mostrar/ocultar campo de troco
+                    const cashChangeSection = document.getElementById('cash-change-section');
+                    if (selectedPaymentMethod === 'dinheiro') {
+                        cashChangeSection.classList.add('active');
+                    } else {
+                        cashChangeSection.classList.remove('active');
+                    }
                 });
             });
+            
+            // Calcular troco quando o valor recebido mudar
+            document.getElementById('cash-received').addEventListener('input', calculateChange);
             
             // Botões de confirmação/cancelamento de pagamento no modal
             document.getElementById('confirm-payment-modal').addEventListener('click', registerOrderWithPayment);
@@ -4418,6 +5180,20 @@
                 closeDriverModal();
             });
             
+            // Modal de abertura de caixa
+            document.getElementById('confirm-open-cash').addEventListener('click', confirmOpenCash);
+            document.getElementById('cancel-open-cash').addEventListener('click', function() {
+                document.getElementById('open-cash-modal').classList.remove('active');
+                document.getElementById('initial-cash-amount').value = '';
+            });
+            
+            // Modal de fechamento de caixa
+            document.getElementById('confirm-close-cash').addEventListener('click', confirmCloseCash);
+            document.getElementById('cancel-close-cash').addEventListener('click', function() {
+                document.getElementById('close-cash-modal').classList.remove('active');
+                document.getElementById('final-cash-amount').value = '';
+            });
+            
             // Modal de confirmação de impressão
             document.getElementById('confirm-print').addEventListener('click', confirmPrintAfterSale);
             document.getElementById('cancel-print').addEventListener('click', function() {
@@ -4454,6 +5230,14 @@
                     if (document.getElementById('payment-modal').classList.contains('active')) {
                         closePaymentModal();
                     }
+                    if (document.getElementById('open-cash-modal').classList.contains('active')) {
+                        document.getElementById('open-cash-modal').classList.remove('active');
+                        document.getElementById('initial-cash-amount').value = '';
+                    }
+                    if (document.getElementById('close-cash-modal').classList.contains('active')) {
+                        document.getElementById('close-cash-modal').classList.remove('active');
+                        document.getElementById('final-cash-amount').value = '';
+                    }
                     if (document.getElementById('print-confirmation-modal').classList.contains('active')) {
                         closePrintConfirmationModal();
                         pendingPrintOrder = null;
@@ -4474,6 +5258,18 @@
                 // Permitir Enter no campo de nome da mesa
                 if (e.key === 'Enter' && document.getElementById('new-table-name') === document.activeElement) {
                     document.getElementById('confirm-table').click();
+                }
+                // Permitir Enter no campo de abertura de caixa
+                if (e.key === 'Enter' && document.getElementById('initial-cash-amount') === document.activeElement) {
+                    document.getElementById('confirm-open-cash').click();
+                }
+                // Permitir Enter no campo de fechamento de caixa
+                if (e.key === 'Enter' && document.getElementById('final-cash-amount') === document.activeElement) {
+                    document.getElementById('confirm-close-cash').click();
+                }
+                // Permitir Enter no campo de valor recebido
+                if (e.key === 'Enter' && document.getElementById('cash-received') === document.activeElement && selectedPaymentMethod === 'dinheiro') {
+                    document.getElementById('confirm-payment-modal').click();
                 }
             });
             
@@ -4498,6 +5294,7 @@
             loadDailyExpenses();
             loadDeliveryData();
             loadActiveTables();
+            loadCashRegister();
             updateDayInfo();
             
             // Configurar mês atual nos seletores
