@@ -28,6 +28,7 @@
             --credit-color: #FF6347;
             --debit-color: #1E90FF;
             --delivery-color: #FF6B6B;
+            --table-color: #4CAF50;
         }
 
         body {
@@ -550,9 +551,127 @@
             color: var(--delivery-color);
         }
 
-        /* REMOVIDA Área de Formas de Pagamento fixa */
-        .payment-methods {
-            display: none;
+        /* Área de Mesas */
+        .tables-section {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .tables-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .table-btn {
+            background-color: var(--table-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .table-btn:hover {
+            background-color: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .tables-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            background: white;
+        }
+
+        .table-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--table-color);
+        }
+
+        .table-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .table-info {
+            flex: 2;
+        }
+
+        .table-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--table-color);
+        }
+
+        .table-status {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .table-value {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .table-action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .table-action-btn.view {
+            color: var(--info-color);
+        }
+
+        .table-action-btn.finish {
+            color: var(--success-color);
+        }
+
+        .table-action-btn.cancel {
+            color: var(--danger-color);
+        }
+
+        .table-action-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: scale(1.1);
+        }
+
+        .no-tables-message {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-style: italic;
         }
 
         .action-buttons {
@@ -1050,50 +1169,6 @@
             transform: translateY(0);
         }
 
-        /* Pedido Impresso - MODIFICADO: agora é apenas a visualização */
-        .printed-order-section {
-            background: var(--light-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 2px dashed var(--primary-color);
-        }
-
-        .printed-order {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.4;
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-        }
-
-        .printed-order-header {
-            text-align: center;
-            font-weight: bold;
-            border-bottom: 1px dashed #000;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-
-        .printed-order-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .printed-order-footer {
-            border-top: 1px dashed #000;
-            padding-top: 10px;
-            margin-top: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-
         /* Modal de Delivery */
         .delivery-modal {
             max-width: 500px;
@@ -1181,60 +1256,142 @@
             max-width: 400px;
         }
 
-        /* Modal de Confirmação de Delivery */
-        .delivery-confirmation-modal {
-            max-width: 500px;
+        /* Modal de Confirmação de Venda (Delivery/Mesa/Retirada) */
+        .sale-type-modal {
+            max-width: 600px;
         }
 
-        .delivery-question {
+        .sale-type-question {
             text-align: center;
             margin-bottom: 25px;
             font-size: 1.2rem;
             color: var(--secondary-color);
         }
 
-        .delivery-question-buttons {
-            display: flex;
+        .sale-type-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin-bottom: 25px;
         }
 
-        .delivery-question-btn {
-            flex: 1;
-            padding: 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
+        .sale-type-option {
+            padding: 25px 15px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
             cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 15px;
+        }
+
+        .sale-type-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sale-type-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(139, 0, 139, 0.05);
+        }
+
+        .sale-type-option.delivery {
+            border-color: var(--delivery-color);
+        }
+
+        .sale-type-option.delivery.selected {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        .sale-type-option.table {
+            border-color: var(--table-color);
+        }
+
+        .sale-type-option.table.selected {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .sale-type-option.pickup {
+            border-color: var(--info-color);
+        }
+
+        .sale-type-option.pickup.selected {
+            background-color: rgba(33, 150, 243, 0.1);
+        }
+
+        .sale-type-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sale-type-option.delivery .sale-type-icon {
+            color: var(--delivery-color);
+        }
+
+        .sale-type-option.table .sale-type-icon {
+            color: var(--table-color);
+        }
+
+        .sale-type-option.pickup .sale-type-icon {
+            color: var(--info-color);
+        }
+
+        .sale-type-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .sale-type-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Modal de Mesa */
+        .table-modal {
+            max-width: 400px;
+        }
+
+        .table-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-option {
+            padding: 15px 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .delivery-question-btn.yes {
-            background-color: var(--delivery-color);
-            color: white;
+        .table-option:hover {
+            border-color: var(--table-color);
+            background-color: rgba(76, 175, 80, 0.05);
         }
 
-        .delivery-question-btn.yes:hover {
-            background-color: #ff5252;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 107, 107, 0.3);
+        .table-option.selected {
+            border-color: var(--table-color);
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--table-color);
         }
 
-        .delivery-question-btn.no {
-            background-color: var(--success-color);
-            color: white;
+        .table-option.occupied {
+            background-color: rgba(244, 67, 54, 0.1);
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+            cursor: not-allowed;
         }
 
-        .delivery-question-btn.no:hover {
-            background-color: #3d8b40;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(76, 175, 80, 0.3);
+        .table-option.occupied:hover {
+            background-color: rgba(244, 67, 54, 0.1);
+            transform: none;
         }
 
         /* Informações do Dia */
@@ -1279,7 +1436,7 @@
             color: var(--primary-color);
         }
 
-        /* Modal de Pagamento (NOVO) */
+        /* Modal de Pagamento */
         .payment-modal {
             max-width: 500px;
         }
@@ -1358,7 +1515,7 @@
             margin-top: 20px;
         }
 
-        /* Modal de Confirmação de Impressão (NOVO) */
+        /* Modal de Confirmação de Impressão */
         .print-confirmation-modal {
             max-width: 400px;
         }
@@ -1409,6 +1566,10 @@
         @media (max-width: 1024px) {
             .pdv-container {
                 flex-direction: column;
+            }
+            
+            .sale-type-options {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1487,15 +1648,19 @@
                 grid-template-columns: 1fr;
             }
             
-            .delivery-question-buttons {
-                flex-direction: column;
-            }
-            
             .day-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .print-buttons {
+                flex-direction: column;
+            }
+            
+            .table-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .tables-controls {
                 flex-direction: column;
             }
         }
@@ -1522,6 +1687,18 @@
                 padding: 15px;
                 font-size: 1rem;
             }
+            
+            .table-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sale-type-option {
+                padding: 15px 10px;
+            }
+            
+            .sale-type-icon {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -1533,7 +1710,7 @@
             </div>
             <div class="logo-text">
                 <h1>Quero Mais Açaí</h1>
-                <p class="subtitle">Sistema PDV - Controle de Vendas e Delivery</p>
+                <p class="subtitle">Sistema PDV - Controle de Vendas, Mesas e Delivery</p>
             </div>
         </div>
         <div class="nav-tabs">
@@ -1566,12 +1743,12 @@
                             <div class="day-stat-value" id="today-sales-amount">R$ 0,00</div>
                         </div>
                         <div class="day-stat">
-                            <div class="day-stat-label">Delivery Hoje</div>
-                            <div class="day-stat-value" id="today-delivery-count">0</div>
+                            <div class="day-stat-label">Mesas Ativas</div>
+                            <div class="day-stat-value" id="today-tables-active">0</div>
                         </div>
                         <div class="day-stat">
-                            <div class="day-stat-label">Saídas Hoje</div>
-                            <div class="day-stat-value" id="today-expenses-amount">R$ 0,00</div>
+                            <div class="day-stat-label">Delivery Hoje</div>
+                            <div class="day-stat-value" id="today-delivery-count">0</div>
                         </div>
                     </div>
                 </div>
@@ -1611,29 +1788,19 @@
                     </div>
                 </div>
 
-                <!-- Área de Pedido Impresso (agora apenas visualização) -->
-                <div class="printed-order-section">
-                    <h3 class="category-title"><i class="fas fa-print"></i> Pedido para Cozinha</h3>
-                    <div class="printed-order" id="printed-order">
-                        <div class="printed-order-header">
-                            QUERO MAIS AÇAÍ<br>
-                            PEDIDO PARA COZINHA<br>
-                            --------------------
-                        </div>
-                        <div id="printed-order-items">
-                            <!-- Itens do pedido impresso serão inseridos aqui -->
-                        </div>
-                        <div class="printed-order-footer" id="printed-order-footer">
-                            Aguardando pedido...
-                        </div>
+                <!-- Área de Mesas Ativas -->
+                <div class="tables-section">
+                    <h3 class="category-title"><i class="fas fa-chair"></i> Mesas Ativas</h3>
+                    <div class="tables-controls">
+                        <button class="table-btn" id="open-table-modal-btn">
+                            <i class="fas fa-plus-circle"></i> Nova Mesa
+                        </button>
+                        <button class="table-btn" id="refresh-tables-btn">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
                     </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-register" id="print-order">
-                            <i class="fas fa-print"></i> Imprimir Pedido
-                        </button>
-                        <button class="btn btn-clear" id="clear-printed-order">
-                            <i class="fas fa-broom"></i> Limpar
-                        </button>
+                    <div class="tables-list" id="tables-list">
+                        <p class="no-tables-message" id="no-tables-message">Nenhuma mesa ativa no momento.</p>
                     </div>
                 </div>
             </section>
@@ -1730,7 +1897,7 @@
 
     <div class="container" id="reports-container">
         <section class="reports-section">
-            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Relatório Completo de Vendas e Delivery</h2>
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Relatório Completo de Vendas, Mesas e Delivery</h2>
             
             <div class="report-controls">
                 <button class="report-btn btn-export-csv" id="export-csv">
@@ -1789,12 +1956,12 @@
                     <div class="stat-value" id="total-sales-amount">R$ 0,00</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Total de Delivery</div>
-                    <div class="stat-value" id="total-delivery-amount">R$ 0,00</div>
+                    <div class="stat-title">Total de Mesas</div>
+                    <div class="stat-value" id="total-tables-amount">R$ 0,00</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Total de Despesas</div>
-                    <div class="stat-value" id="total-expenses-amount">R$ 0,00</div>
+                    <div class="stat-title">Total de Delivery</div>
+                    <div class="stat-value" id="total-delivery-amount">R$ 0,00</div>
                 </div>
             </div>
             
@@ -1802,8 +1969,12 @@
             <div class="financial-summary">
                 <h3 class="category-title"><i class="fas fa-balance-scale"></i> Balanço Financeiro</h3>
                 <div class="financial-row">
-                    <span>Total de Vendas (sem delivery):</span>
-                    <span id="total-revenue-no-delivery">R$ 0,00</span>
+                    <span>Total de Vendas (sem delivery/mesas):</span>
+                    <span id="total-revenue-basic">R$ 0,00</span>
+                </div>
+                <div class="financial-row">
+                    <span>Total de Vendas em Mesas:</span>
+                    <span id="total-tables-revenue">R$ 0,00</span>
                 </div>
                 <div class="financial-row">
                     <span>Total com Delivery:</span>
@@ -1818,16 +1989,12 @@
                     <span id="most-used-payment">-</span>
                 </div>
                 <div class="financial-row">
-                    <span>Total de Entregas Realizadas:</span>
-                    <span id="total-deliveries">0</span>
+                    <span>Tipo de Venda Mais Comum:</span>
+                    <span id="most-common-sale-type">-</span>
                 </div>
                 <div class="financial-row financial-total">
-                    <span>Lucro Líquido (sem delivery):</span>
-                    <span id="total-profit-no-delivery">R$ 0,00</span>
-                </div>
-                <div class="financial-row financial-total">
-                    <span>Lucro Líquido (com delivery):</span>
-                    <span id="total-profit-with-delivery">R$ 0,00</span>
+                    <span>Lucro Líquido Total:</span>
+                    <span id="total-profit">R$ 0,00</span>
                 </div>
             </div>
             
@@ -1837,10 +2004,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Data/Hora</th>
+                            <th>Tipo</th>
                             <th>Itens</th>
                             <th>Valor</th>
                             <th>Pagamento</th>
-                            <th>Delivery</th>
+                            <th>Detalhes</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -1956,34 +2124,80 @@
         </div>
     </div>
     
-    <!-- Modal de Confirmação de Delivery -->
-    <div class="modal-overlay" id="delivery-confirmation-modal">
-        <div class="modal delivery-confirmation-modal">
+    <!-- Modal de Tipo de Venda (Delivery/Mesa/Retirada) -->
+    <div class="modal-overlay" id="sale-type-modal">
+        <div class="modal sale-type-modal">
             <h3 class="modal-title">
-                <i class="fas fa-motorcycle"></i> Esta venda é um delivery?
+                <i class="fas fa-shopping-cart"></i> Tipo de Venda
             </h3>
-            <div class="delivery-question">
-                Após confirmar o pagamento, informe se é para entrega
+            <div class="sale-type-question">
+                Selecione o tipo de venda:
             </div>
-            <div class="delivery-question-buttons">
-                <button class="delivery-question-btn yes" id="delivery-yes">
-                    <i class="fas fa-motorcycle"></i>
-                    <span>SIM, é delivery</span>
-                </button>
-                <button class="delivery-question-btn no" id="delivery-no">
-                    <i class="fas fa-store"></i>
-                    <span>NÃO, é retirada</span>
-                </button>
+            <div class="sale-type-options">
+                <div class="sale-type-option delivery" id="sale-type-delivery">
+                    <div class="sale-type-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="sale-type-name">Delivery</div>
+                    <div class="sale-type-description">Entrega no endereço do cliente</div>
+                </div>
+                <div class="sale-type-option table" id="sale-type-table">
+                    <div class="sale-type-icon">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <div class="sale-type-name">Mesa</div>
+                    <div class="sale-type-description">Consumo no local</div>
+                </div>
+                <div class="sale-type-option pickup" id="sale-type-pickup">
+                    <div class="sale-type-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="sale-type-name">Retirada</div>
+                    <div class="sale-type-description">Cliente retira no balcão</div>
+                </div>
             </div>
             <div class="modal-buttons">
-                <button class="modal-btn modal-btn-cancel" id="cancel-delivery-confirmation">
+                <button class="modal-btn modal-btn-confirm" id="confirm-sale-type">
+                    Continuar
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-sale-type">
                     Cancelar
                 </button>
             </div>
         </div>
     </div>
     
-    <!-- NOVO: Modal de Pagamento (Popup) -->
+    <!-- Modal de Mesas -->
+    <div class="modal-overlay" id="table-modal">
+        <div class="modal table-modal">
+            <h3 class="modal-title">
+                <i class="fas fa-chair"></i> Selecione a Mesa
+            </h3>
+            <p style="margin-bottom: 20px; color: #666;">
+                Escolha uma mesa disponível ou crie uma nova:
+            </p>
+            
+            <div class="table-options" id="table-options">
+                <!-- Mesas serão geradas dinamicamente -->
+            </div>
+            
+            <div class="form-group">
+                <label for="new-table-name">Ou digite o nome da mesa:</label>
+                <input type="text" class="modal-input" id="new-table-name" placeholder="Ex: Mesa 1, Balcão, etc.">
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-confirm" id="confirm-table">
+                    Selecionar Mesa
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-table">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Pagamento (Popup) -->
     <div class="modal-overlay" id="payment-modal">
         <div class="modal payment-modal">
             <h3 class="modal-title">
@@ -2023,7 +2237,7 @@
         </div>
     </div>
     
-    <!-- NOVO: Modal de Confirmação de Impressão -->
+    <!-- Modal de Confirmação de Impressão -->
     <div class="modal-overlay" id="print-confirmation-modal">
         <div class="modal print-confirmation-modal">
             <h3 class="modal-title">
@@ -2044,7 +2258,7 @@
     </div>
     
     <footer>
-        <p>Sistema PDV Açaiteria &copy; 2023 - Controle Completo de Vendas e Delivery</p>
+        <p>Sistema PDV Açaiteria &copy; 2023 - Controle Completo de Vendas, Mesas e Delivery</p>
     </footer>
     
     <div class="notification" id="notification">
@@ -2094,6 +2308,13 @@
             debito: { name: "Cartão Débito", color: "var(--debit-color)", icon: "fa-credit-card" }
         };
 
+        // Tipos de venda
+        const saleTypes = {
+            delivery: { name: "Delivery", color: "var(--delivery-color)", icon: "fa-motorcycle" },
+            table: { name: "Mesa", color: "var(--table-color)", icon: "fa-chair" },
+            pickup: { name: "Retirada", color: "var(--info-color)", icon: "fa-store" }
+        };
+
         // Configurações do delivery
         const STANDARD_DELIVERY_FEE = 4.00;
 
@@ -2105,15 +2326,19 @@
         let deliveryFee = STANDARD_DELIVERY_FEE;
         let deliveryDriverName = "";
         let orderCounter = 1;
+        let tableCounter = 1;
         let currentMonthFilter = null;
         let selectedPaymentMethod = null;
+        let selectedSaleType = null;
+        let selectedTable = null;
         let currentModalAction = null;
         let currentSaleToCancel = null;
         let selectedAcaiSize = null;
         let selectedFlavor = null;
         let currentSale = null;
         let isDeliveryFlow = false;
-        let pendingPrintOrder = null; // CORREÇÃO: Variável para armazenar pedido pendente de impressão
+        let pendingPrintOrder = null;
+        let activeTables = [];
 
         // Configurações de segurança
         const ADMIN_PASSWORD = "admin123";
@@ -2152,6 +2377,8 @@
                 deliveryTotalValue = 0;
                 deliveryFee = STANDARD_DELIVERY_FEE;
                 deliveryDriverName = "";
+                selectedTable = null;
+                activeTables = [];
                 
                 // Limpar localStorage do dia
                 localStorage.removeItem('daily_expenses');
@@ -2160,6 +2387,7 @@
                 localStorage.removeItem('delivery_fee');
                 localStorage.removeItem('delivery_driver');
                 localStorage.removeItem('today_sales');
+                localStorage.removeItem('active_tables');
                 
                 // Salvar data do reset
                 localStorage.setItem(LAST_RESET_KEY, today);
@@ -2169,7 +2397,7 @@
                 updateOrderSummary();
                 renderDailyExpenses();
                 updateDeliveryDisplay();
-                updatePrintedOrder();
+                renderTablesList();
                 updateDayInfo();
                 
                 console.log("Dados diários resetados para novo dia");
@@ -2185,6 +2413,9 @@
             const todaySalesCount = todaySales.length;
             const todaySalesAmount = todaySales.reduce((sum, sale) => sum + sale.total, 0);
             
+            // Mesas ativas
+            const activeTablesCount = activeTables.length;
+            
             // Deliveries de hoje
             const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
             const todayDeliveries = deliveries.filter(d => {
@@ -2199,8 +2430,8 @@
             
             document.getElementById('today-sales-count').textContent = todaySalesCount;
             document.getElementById('today-sales-amount').textContent = formatCurrency(todaySalesAmount);
+            document.getElementById('today-tables-active').textContent = activeTablesCount;
             document.getElementById('today-delivery-count').textContent = todayDeliveryCount;
-            document.getElementById('today-expenses-amount').textContent = formatCurrency(todayExpensesAmount);
         }
 
         // Atualizar o resumo do pedido
@@ -2217,9 +2448,6 @@
             } else {
                 emptyOrderMessage.style.display = 'none';
             }
-            
-            // Atualizar pedido impresso
-            updatePrintedOrder();
         }
 
         // Atualizar contador de delivery
@@ -2247,6 +2475,257 @@
             localStorage.setItem('delivery_fee', deliveryFee.toString());
             if (deliveryDriverName) {
                 localStorage.setItem('delivery_driver', deliveryDriverName);
+            }
+        }
+
+        // Carregar mesas ativas
+        function loadActiveTables() {
+            const savedTables = JSON.parse(localStorage.getItem('active_tables') || '[]');
+            activeTables = savedTables;
+            renderTablesList();
+        }
+
+        // Salvar mesas ativas
+        function saveActiveTables() {
+            localStorage.setItem('active_tables', JSON.stringify(activeTables));
+        }
+
+        // Renderizar lista de mesas
+        function renderTablesList() {
+            const tablesList = document.getElementById('tables-list');
+            const noTablesMessage = document.getElementById('no-tables-message');
+            
+            // Limpar lista
+            tablesList.innerHTML = '';
+            
+            if (activeTables.length === 0) {
+                noTablesMessage.style.display = 'block';
+                return;
+            }
+            
+            noTablesMessage.style.display = 'none';
+            
+            // Adicionar mesas ativas
+            activeTables.forEach(table => {
+                const tableElement = document.createElement('div');
+                tableElement.className = 'table-item';
+                
+                // Calcular total da mesa
+                const tableTotal = table.orders.reduce((sum, order) => sum + order.total, 0);
+                
+                tableElement.innerHTML = `
+                    <div class="table-info">
+                        <div class="table-name">${table.name}</div>
+                        <div class="table-status">
+                            ${table.orders.length} pedido(s) • Aberta: ${new Date(table.openedAt).toLocaleTimeString('pt-BR').substring(0, 5)}
+                        </div>
+                    </div>
+                    <div class="table-value">${formatCurrency(tableTotal)}</div>
+                    <div class="table-actions">
+                        <button class="table-action-btn view" data-id="${table.id}" title="Ver/Adicionar">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="table-action-btn finish" data-id="${table.id}" title="Finalizar">
+                            <i class="fas fa-check-circle"></i>
+                        </button>
+                        <button class="table-action-btn cancel" data-id="${table.id}" title="Cancelar">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </div>
+                `;
+                
+                tablesList.appendChild(tableElement);
+            });
+            
+            // Adicionar event listeners aos botões
+            document.querySelectorAll('.table-action-btn.view').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tableId = parseInt(this.getAttribute('data-id'));
+                    loadTableForEditing(tableId);
+                });
+            });
+            
+            document.querySelectorAll('.table-action-btn.finish').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tableId = parseInt(this.getAttribute('data-id'));
+                    finishTableSale(tableId);
+                });
+            });
+            
+            document.querySelectorAll('.table-action-btn.cancel').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tableId = parseInt(this.getAttribute('data-id'));
+                    if (confirm(`Cancelar a mesa ${tableId} e todos os pedidos?`)) {
+                        cancelTable(tableId);
+                    }
+                });
+            });
+        }
+
+        // Carregar mesa para edição
+        function loadTableForEditing(tableId) {
+            const table = activeTables.find(t => t.id === tableId);
+            if (!table) return;
+            
+            // Limpar pedido atual
+            currentOrder = [];
+            
+            // Adicionar último pedido da mesa ao pedido atual (para edição)
+            if (table.orders.length > 0) {
+                const lastOrder = table.orders[table.orders.length - 1];
+                lastOrder.items.forEach(item => {
+                    currentOrder.push({
+                        id: Date.now() + Math.random(),
+                        productId: item.productId,
+                        name: item.name,
+                        price: item.price,
+                        details: item.details,
+                        size: item.size,
+                        flavor: item.flavor
+                    });
+                });
+            }
+            
+            selectedTable = table;
+            renderOrderItems();
+            updateOrderSummary();
+            
+            showNotification(`Mesa ${table.name} carregada para edição!`);
+        }
+
+        // Finalizar venda da mesa
+        function finishTableSale(tableId) {
+            const table = activeTables.find(t => t.id === tableId);
+            if (!table) return;
+            
+            // Calcular total da mesa
+            const tableTotal = table.orders.reduce((sum, order) => sum + order.total, 0);
+            
+            // Perguntar tipo de pagamento
+            selectedSaleType = 'table';
+            currentSale = {
+                id: orderCounter++,
+                date: new Date().toISOString(),
+                items: table.orders.flatMap(order => order.items),
+                subtotal: tableTotal,
+                total: tableTotal,
+                paymentMethod: null,
+                saleType: 'table',
+                tableName: table.name,
+                tableId: table.id,
+                deliveryCount: 0,
+                deliveryFee: 0,
+                deliveryTotal: 0,
+                deliveryDriver: ""
+            };
+            
+            // Mostrar modal de pagamento
+            showPaymentModal();
+        }
+
+        // Cancelar mesa
+        function cancelTable(tableId) {
+            const tableIndex = activeTables.findIndex(t => t.id === tableId);
+            if (tableIndex !== -1) {
+                activeTables.splice(tableIndex, 1);
+                saveActiveTables();
+                renderTablesList();
+                updateDayInfo();
+                
+                showNotification(`Mesa cancelada!`, "warning");
+            }
+        }
+
+        // Adicionar nova mesa
+        function addTable(tableName) {
+            const newTable = {
+                id: tableCounter++,
+                name: tableName,
+                openedAt: new Date().toISOString(),
+                orders: [],
+                status: 'active'
+            };
+            
+            activeTables.push(newTable);
+            saveActiveTables();
+            renderTablesList();
+            
+            selectedTable = newTable;
+            
+            showNotification(`Mesa ${tableName} aberta!`);
+            return newTable;
+        }
+
+        // Salvar pedido na mesa
+        function saveOrderToTable() {
+            if (!selectedTable || currentOrder.length === 0) return false;
+            
+            const tableIndex = activeTables.findIndex(t => t.id === selectedTable.id);
+            if (tableIndex === -1) return false;
+            
+            const orderTotal = currentOrder.reduce((sum, item) => sum + item.price, 0);
+            
+            const tableOrder = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                items: [...currentOrder],
+                subtotal: orderTotal,
+                total: orderTotal
+            };
+            
+            activeTables[tableIndex].orders.push(tableOrder);
+            saveActiveTables();
+            renderTablesList();
+            
+            // Limpar pedido atual
+            currentOrder = [];
+            renderOrderItems();
+            updateOrderSummary();
+            
+            return true;
+        }
+
+        // Mostrar modal de mesas
+        function showTableModal() {
+            document.getElementById('table-modal').classList.add('active');
+            renderTableOptions();
+        }
+
+        // Fechar modal de mesas
+        function closeTableModal() {
+            document.getElementById('table-modal').classList.remove('active');
+            document.getElementById('new-table-name').value = '';
+            document.querySelectorAll('.table-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+        }
+
+        // Renderizar opções de mesa
+        function renderTableOptions() {
+            const tableOptions = document.getElementById('table-options');
+            tableOptions.innerHTML = '';
+            
+            // Gerar opções padrão
+            for (let i = 1; i <= 12; i++) {
+                const tableName = `Mesa ${i}`;
+                const isOccupied = activeTables.some(table => table.name === tableName);
+                
+                const tableOption = document.createElement('div');
+                tableOption.className = `table-option ${isOccupied ? 'occupied' : ''}`;
+                tableOption.textContent = tableName;
+                tableOption.dataset.name = tableName;
+                
+                if (!isOccupied) {
+                    tableOption.addEventListener('click', function() {
+                        document.querySelectorAll('.table-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        document.getElementById('new-table-name').value = this.dataset.name;
+                    });
+                }
+                
+                tableOptions.appendChild(tableOption);
             }
         }
 
@@ -2324,17 +2803,22 @@
             document.getElementById('driver-name-input').value = '';
         }
 
-        // Mostrar modal de confirmação de delivery
-        function showDeliveryConfirmationModal() {
-            document.getElementById('delivery-confirmation-modal').classList.add('active');
+        // Mostrar modal de tipo de venda
+        function showSaleTypeModal() {
+            selectedSaleType = null;
+            document.querySelectorAll('.sale-type-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.getElementById('sale-type-modal').classList.add('active');
         }
 
-        // Fechar modal de confirmação de delivery
-        function closeDeliveryConfirmationModal() {
-            document.getElementById('delivery-confirmation-modal').classList.remove('active');
+        // Fechar modal de tipo de venda
+        function closeSaleTypeModal() {
+            document.getElementById('sale-type-modal').classList.remove('active');
         }
 
-        // MOSTRAR MODAL DE PAGAMENTO (NOVO)
+        // MOSTRAR MODAL DE PAGAMENTO
         function showPaymentModal() {
             selectedPaymentMethod = null;
             
@@ -2346,17 +2830,17 @@
             document.getElementById('payment-modal').classList.add('active');
         }
 
-        // FECHAR MODAL DE PAGAMENTO (NOVO)
+        // FECHAR MODAL DE PAGAMENTO
         function closePaymentModal() {
             document.getElementById('payment-modal').classList.remove('active');
         }
 
-        // MOSTRAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO (NOVO)
+        // MOSTRAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO
         function showPrintConfirmationModal() {
             document.getElementById('print-confirmation-modal').classList.add('active');
         }
 
-        // FECHAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO (NOVO)
+        // FECHAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO
         function closePrintConfirmationModal() {
             document.getElementById('print-confirmation-modal').classList.remove('active');
         }
@@ -2475,48 +2959,7 @@
             });
         }
 
-        // Atualizar pedido impresso
-        function updatePrintedOrder() {
-            const printedOrderItems = document.getElementById('printed-order-items');
-            const printedOrderFooter = document.getElementById('printed-order-footer');
-            
-            printedOrderItems.innerHTML = '';
-            
-            if (currentOrder.length === 0) {
-                printedOrderFooter.innerHTML = 'Aguardando pedido...';
-                return;
-            }
-            
-            currentOrder.forEach(item => {
-                const line = document.createElement('div');
-                line.className = 'printed-order-line';
-                line.innerHTML = `
-                    <span>${item.name}</span>
-                    <span>${formatCurrency(item.price)}</span>
-                `;
-                printedOrderItems.appendChild(line);
-                
-                // Adicionar detalhes do sabor se for açaí
-                if (item.details) {
-                    const detailLine = document.createElement('div');
-                    detailLine.className = 'printed-order-line';
-                    detailLine.innerHTML = `
-                        <span style="font-size: 0.9em; color: #666;">&nbsp;&nbsp;${item.details}</span>
-                        <span></span>
-                    `;
-                    printedOrderItems.appendChild(detailLine);
-                }
-            });
-            
-            const subtotal = currentOrder.reduce((sum, item) => sum + item.price, 0);
-            printedOrderFooter.innerHTML = `
-                TOTAL: ${formatCurrency(subtotal)}<br>
-                ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR').substring(0, 5)}<br>
-                --------------------
-            `;
-        }
-
-        // Registrar venda com forma de pagamento (MODIFICADO)
+        // Registrar venda com forma de pagamento
         function registerOrderWithPayment() {
             if (!selectedPaymentMethod) {
                 showNotification("Selecione uma forma de pagamento!", "error");
@@ -2529,7 +2972,7 @@
                 return;
             }
             
-            // CORREÇÃO: Salvar pedido atual antes de limpar
+            // Salvar pedido atual antes de limpar
             const pedidoParaImpressao = [...currentOrder];
             
             currentSale = {
@@ -2539,6 +2982,9 @@
                 subtotal: currentOrder.reduce((sum, item) => sum + item.price, 0),
                 total: currentOrder.reduce((sum, item) => sum + item.price, 0),
                 paymentMethod: selectedPaymentMethod,
+                saleType: selectedSaleType,
+                tableName: selectedTable ? selectedTable.name : null,
+                tableId: selectedTable ? selectedTable.id : null,
                 deliveryCount: 0,
                 deliveryFee: 0,
                 deliveryTotal: 0,
@@ -2552,18 +2998,32 @@
             updateOrderSummary();
             closePaymentModal();
             
-            // CORREÇÃO: Salvar pedido para impressão
+            // Salvar pedido para impressão
             pendingPrintOrder = pedidoParaImpressao;
             
-            // Mostrar modal para perguntar se é delivery
-            showDeliveryConfirmationModal();
+            // Processar de acordo com o tipo de venda
+            if (selectedSaleType === 'table') {
+                // Se for mesa, salvar na mesa atual
+                if (selectedTable) {
+                    saveOrderToTable();
+                }
+                
+                // Mostrar modal de confirmação de impressão
+                showPrintConfirmationModal();
+            } else if (selectedSaleType === 'delivery') {
+                // Se for delivery, mostrar seção de delivery
+                startDeliveryFlow();
+            } else {
+                // Se for retirada, mostrar modal de impressão
+                showPrintConfirmationModal();
+            }
         }
 
         // Finalizar venda sem delivery
         function finishSaleWithoutDelivery() {
             if (!currentSale) return;
             
-            // Salvar venda sem delivery
+            // Salvar venda
             const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
             sales.push(currentSale);
             localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
@@ -2583,11 +3043,10 @@
                 loadSalesReport();
             }
             
-            // CORREÇÃO: Mostrar modal de confirmação de impressão para ambos os casos
+            // Mostrar modal de confirmação de impressão
             showPrintConfirmationModal();
             
             currentSale = null;
-            closeDeliveryConfirmationModal();
         }
 
         // Iniciar fluxo de delivery
@@ -2604,7 +3063,7 @@
             deliveryTotalValue = 0;
             updateDeliveryDisplay();
             
-            closeDeliveryConfirmationModal();
+            closeSaleTypeModal();
         }
 
         // Finalizar delivery e salvar venda
@@ -2665,7 +3124,7 @@
                 loadSalesReport();
             }
             
-            // CORREÇÃO: Mostrar modal de confirmação de impressão para ambos os casos
+            // Mostrar modal de confirmação de impressão
             showPrintConfirmationModal();
             
             currentSale = null;
@@ -2728,6 +3187,7 @@
             
             if (confirm("Tem certeza que deseja limpar o pedido atual?")) {
                 currentOrder = [];
+                selectedTable = null;
                 renderOrderItems();
                 updateOrderSummary();
                 showNotification("Pedido limpo com sucesso!");
@@ -2743,6 +3203,7 @@
             
             if (confirm("Deseja cancelar o pedido atual?")) {
                 currentOrder = [];
+                selectedTable = null;
                 renderOrderItems();
                 updateOrderSummary();
                 showNotification("Pedido cancelado!");
@@ -2864,24 +3325,31 @@
             
             // Seção de Vendas
             csvContent += "VENDAS\n";
-            csvContent += "ID Venda;Data;Hora;Itens;Sabor;Tamanho;Quantidade;Valor Unitário;Valor Total;Subtotal;Total;Forma de Pagamento;Delivery Incluído;Taxa Delivery;Entregador\n";
+            csvContent += "ID Venda;Data;Hora;Tipo;Itens;Sabor;Tamanho;Quantidade;Valor Unitário;Valor Total;Subtotal;Total;Forma de Pagamento;Mesa/Delivery;Detalhes\n";
             
             sales.forEach(sale => {
                 const date = new Date(sale.date);
                 const dateStr = date.toLocaleDateString('pt-BR');
                 const timeStr = date.toLocaleTimeString('pt-BR');
-                const hasDelivery = sale.deliveryCount > 0 ? "Sim" : "Não";
-                const deliveryFee = sale.deliveryFee || 0;
-                const driverName = sale.deliveryDriver || "Não informado";
+                const saleType = saleTypes[sale.saleType]?.name || 'N/A';
+                let details = '';
+                
+                if (sale.saleType === 'delivery') {
+                    details = `Delivery: ${sale.deliveryCount} entrega(s) - R$ ${(sale.deliveryFee || 0).toFixed(2)} - Entregador: ${sale.deliveryDriver || 'Não informado'}`;
+                } else if (sale.saleType === 'table') {
+                    details = `Mesa: ${sale.tableName || 'N/A'}`;
+                } else {
+                    details = 'Retirada';
+                }
                 
                 sale.items.forEach(item => {
                     const flavor = item.flavor || "Não especificado";
                     const size = item.size || "Não especificado";
-                    csvContent += `${sale.id};${dateStr};${timeStr};"${item.name}";"${flavor}";${size};1;${item.price.toFixed(2).replace('.', ',')};${item.price.toFixed(2).replace('.', ',')};${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${hasDelivery};${deliveryFee.toFixed(2).replace('.', ',')};"${driverName}"\n`;
+                    csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"${item.name}";"${flavor}";${size};1;${item.price.toFixed(2).replace('.', ',')};${item.price.toFixed(2).replace('.', ',')};${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};"${details}"\n`;
                 });
                 
                 // Linha resumo da venda
-                csvContent += `${sale.id};${dateStr};${timeStr};"RESUMO DA VENDA";;;${sale.items.length};;;${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${hasDelivery};${deliveryFee.toFixed(2).replace('.', ',')};"${driverName}"\n`;
+                csvContent += `${sale.id};${dateStr};${timeStr};${saleType};"RESUMO DA VENDA";;;${sale.items.length};;;${sale.subtotal.toFixed(2).replace('.', ',')};${sale.total.toFixed(2).replace('.', ',')};${paymentMethods[sale.paymentMethod]?.name || 'N/A'};${saleType};"${details}"\n`;
             });
             
             // Seção de Delivery
@@ -2915,10 +3383,15 @@
             
             // Análise de formas de pagamento
             const paymentAnalysis = {};
+            const saleTypeAnalysis = {};
             sales.forEach(sale => {
                 const method = sale.paymentMethod || 'unknown';
                 paymentAnalysis[method] = (paymentAnalysis[method] || 0) + 1;
+                
+                const type = sale.saleType || 'unknown';
+                saleTypeAnalysis[type] = (saleTypeAnalysis[type] || 0) + 1;
             });
+            
             let mostUsedPayment = "N/A";
             let maxCount = 0;
             for (const [method, count] of Object.entries(paymentAnalysis)) {
@@ -2928,14 +3401,24 @@
                 }
             }
             
+            let mostCommonSaleType = "N/A";
+            let maxTypeCount = 0;
+            for (const [type, count] of Object.entries(saleTypeAnalysis)) {
+                if (count > maxTypeCount) {
+                    maxTypeCount = count;
+                    mostCommonSaleType = saleTypes[type]?.name || type;
+                }
+            }
+            
             csvContent += "\n\nRESUMO GERAL\n";
             csvContent += `Total de Vendas;${sales.length}\n`;
-            csvContent += `Valor Total Vendido (sem delivery);${totalRevenueNoDelivery.toFixed(2).replace('.', ',')}\n`;
+            csvContent += `Valor Total Vendido;${totalRevenueNoDelivery.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Total em Taxas de Delivery;${totalDeliveryFees.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Receita Total (com delivery);${totalRevenueWithDelivery.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Total de Entregas;${totalDeliveries}\n`;
             csvContent += `Total de Despesas;${totalExpenses.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Forma de Pagamento Mais Usada;${mostUsedPayment}\n`;
+            csvContent += `Tipo de Venda Mais Comum;${mostCommonSaleType}\n`;
             csvContent += `Lucro Líquido (sem delivery);${profitNoDelivery.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Lucro Líquido (com delivery);${profitWithDelivery.toFixed(2).replace('.', ',')}\n`;
             csvContent += `Data do Relatório;${new Date().toLocaleDateString('pt-BR')}\n`;
@@ -2968,13 +3451,19 @@
             } else {
                 sales.forEach(sale => {
                     const date = new Date(sale.date);
-                    const hasDelivery = sale.deliveryCount > 0;
-                    const deliveryInfo = hasDelivery ? 
-                        ` (Com delivery: ${sale.deliveryCount} entrega(s) - R$ ${(sale.deliveryFee || 0).toFixed(2)} - Entregador: ${sale.deliveryDriver || 'Não informado'})` : 
-                        "";
+                    const saleType = saleTypes[sale.saleType]?.name || 'N/A';
+                    let details = '';
+                    
+                    if (sale.saleType === 'delivery') {
+                        details = ` (Delivery: ${sale.deliveryCount} entrega(s) - R$ ${(sale.deliveryFee || 0).toFixed(2)} - Entregador: ${sale.deliveryDriver || 'Não informado'})`;
+                    } else if (sale.saleType === 'table') {
+                        details = ` (Mesa: ${sale.tableName || 'N/A'})`;
+                    } else {
+                        details = ' (Retirada)';
+                    }
                     
                     txtContent += `Venda #${sale.id} - ${date.toLocaleDateString('pt-BR')} ${date.toLocaleTimeString('pt-BR')}\n`;
-                    txtContent += `Forma de Pagamento: ${paymentMethods[sale.paymentMethod]?.name || 'N/A'}${deliveryInfo}\n`;
+                    txtContent += `Tipo: ${saleType} • Forma de Pagamento: ${paymentMethods[sale.paymentMethod]?.name || 'N/A'}${details}\n`;
                     txtContent += "-".repeat(50) + "\n";
                     
                     sale.items.forEach(item => {
@@ -2987,7 +3476,7 @@
                     
                     txtContent += "\n";
                     txtContent += `Subtotal:${"".padEnd(43)} ${formatCurrency(sale.subtotal).padStart(15)}\n`;
-                    if (hasDelivery) {
+                    if (sale.saleType === 'delivery' && sale.deliveryCount > 0) {
                         txtContent += `Taxa Delivery:${"".padEnd(37)} ${formatCurrency(sale.deliveryFee || 0).padStart(15)}\n`;
                     }
                     txtContent += `Total:${"".padEnd(45)} ${formatCurrency(sale.total).padStart(15)}\n\n`;
@@ -3042,16 +3531,30 @@
             
             // Análise de formas de pagamento
             const paymentAnalysis = {};
+            const saleTypeAnalysis = {};
             sales.forEach(sale => {
                 const method = sale.paymentMethod || 'unknown';
                 paymentAnalysis[method] = (paymentAnalysis[method] || 0) + 1;
+                
+                const type = sale.saleType || 'unknown';
+                saleTypeAnalysis[type] = (saleTypeAnalysis[type] || 0) + 1;
             });
+            
             let mostUsedPayment = "N/A";
             let maxCount = 0;
             for (const [method, count] of Object.entries(paymentAnalysis)) {
                 if (count > maxCount) {
                     maxCount = count;
                     mostUsedPayment = paymentMethods[method]?.name || method;
+                }
+            }
+            
+            let mostCommonSaleType = "N/A";
+            let maxTypeCount = 0;
+            for (const [type, count] of Object.entries(saleTypeAnalysis)) {
+                if (count > maxTypeCount) {
+                    maxTypeCount = count;
+                    mostCommonSaleType = saleTypes[type]?.name || type;
                 }
             }
             
@@ -3066,6 +3569,7 @@
             txtContent += `Receita Total (com delivery): ${formatCurrency(totalRevenueWithDelivery)}\n`;
             txtContent += `Total de Despesas: ${formatCurrency(totalExpenses)}\n`;
             txtContent += `Forma de Pagamento Mais Usada: ${mostUsedPayment}\n`;
+            txtContent += `Tipo de Venda Mais Comum: ${mostCommonSaleType}\n`;
             txtContent += `Lucro Líquido (sem delivery): ${formatCurrency(profitNoDelivery)}\n`;
             txtContent += `Lucro Líquido (com delivery): ${formatCurrency(profitWithDelivery)}\n`;
             txtContent += `Data do Relatório: ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR')}\n`;
@@ -3141,9 +3645,11 @@
                     localStorage.removeItem('delivery_total');
                     localStorage.removeItem('delivery_fee');
                     localStorage.removeItem('delivery_driver');
+                    localStorage.removeItem('active_tables');
                     localStorage.removeItem(LAST_RESET_KEY);
                     
                     orderCounter = 1;
+                    tableCounter = 1;
                     currentMonthFilter = null;
                     currentOrder = [];
                     dailyExpenses = [];
@@ -3151,6 +3657,8 @@
                     deliveryTotalValue = 0;
                     deliveryFee = STANDARD_DELIVERY_FEE;
                     deliveryDriverName = "";
+                    selectedTable = null;
+                    activeTables = [];
                     
                     showNotification("Todos os dados foram apagados com sucesso!", "warning");
                     
@@ -3160,7 +3668,7 @@
                         updateOrderSummary();
                         renderDailyExpenses();
                         updateDeliveryDisplay();
-                        updatePrintedOrder();
+                        renderTablesList();
                         updateDayInfo();
                     }
                     if (document.getElementById('reports-container').classList.contains('active')) {
@@ -3231,17 +3739,31 @@
                 }
                 
                 const paymentMethod = paymentMethods[sale.paymentMethod] || { name: 'N/A', color: '#666' };
-                const hasDelivery = sale.deliveryCount > 0;
-                const deliveryInfo = hasDelivery 
-                    ? `<span style="color: var(--delivery-color);">
-                          <i class="fas fa-motorcycle"></i> ${sale.deliveryCount} entrega(s)<br>
-                          <small>${sale.deliveryDriver ? `Entregador: ${sale.deliveryDriver}` : ''}</small>
-                       </span>`
-                    : '<span style="color: #999;">Sem delivery</span>';
+                const saleType = saleTypes[sale.saleType] || { name: 'N/A', color: '#666', icon: 'fa-question' };
+                
+                let details = '';
+                if (sale.saleType === 'delivery') {
+                    details = `<span style="color: var(--delivery-color);">
+                        <i class="fas fa-motorcycle"></i> ${sale.deliveryCount || 0} entrega(s)<br>
+                        <small>${sale.deliveryDriver ? `Entregador: ${sale.deliveryDriver}` : ''}</small>
+                    </span>`;
+                } else if (sale.saleType === 'table') {
+                    details = `<span style="color: var(--table-color);">
+                        <i class="fas fa-chair"></i> ${sale.tableName || 'N/A'}<br>
+                        <small>Mesa</small>
+                    </span>`;
+                } else {
+                    details = '<span style="color: var(--info-color);"><i class="fas fa-store"></i> Retirada</span>';
+                }
                 
                 row.innerHTML = `
                     <td>${sale.id}</td>
                     <td>${formatDate(sale.date)}</td>
+                    <td>
+                        <span style="color: ${saleType.color}; font-weight: 600;">
+                            <i class="fas ${saleType.icon}"></i> ${saleType.name}
+                        </span>
+                    </td>
                     <td>${itemsSummary} (${sale.items.length} itens)</td>
                     <td>${formatCurrency(sale.total)}</td>
                     <td>
@@ -3249,7 +3771,7 @@
                             <i class="fas ${paymentMethod.icon}"></i> ${paymentMethod.name}
                         </span>
                     </td>
-                    <td>${deliveryInfo}</td>
+                    <td>${details}</td>
                     <td>
                         <button class="cancel-sale-btn" data-id="${sale.id}">
                             <i class="fas fa-times"></i> Cancelar
@@ -3275,6 +3797,10 @@
         function updateReportStats(sales, dailyExpenses, deliveries) {
             const totalSales = sales.length;
             const totalSalesAmount = sales.reduce((sum, sale) => sum + sale.total, 0);
+            
+            // Calcular estatísticas de mesa
+            const tableSales = sales.filter(sale => sale.saleType === 'table');
+            const totalTableAmount = tableSales.reduce((sum, sale) => sum + sale.total, 0);
             
             // Calcular estatísticas de delivery
             let totalDeliveryFees = 0;
@@ -3314,16 +3840,18 @@
             }
             
             const totalExpensesAmount = totalDailyExpenses;
-            const totalRevenueNoDelivery = totalSalesAmount;
             const totalRevenueWithDelivery = totalSalesAmount + totalDeliveryFees;
-            const profitNoDelivery = totalRevenueNoDelivery - totalExpensesAmount;
-            const profitWithDelivery = totalRevenueWithDelivery - totalExpensesAmount;
+            const profitTotal = totalRevenueWithDelivery - totalExpensesAmount;
             
             // Análise de formas de pagamento
             const paymentAnalysis = {};
+            const saleTypeAnalysis = {};
             sales.forEach(sale => {
                 const method = sale.paymentMethod || 'unknown';
                 paymentAnalysis[method] = (paymentAnalysis[method] || 0) + 1;
+                
+                const type = sale.saleType || 'unknown';
+                saleTypeAnalysis[type] = (saleTypeAnalysis[type] || 0) + 1;
             });
             
             let mostUsedPayment = "N/A";
@@ -3335,24 +3863,31 @@
                 }
             }
             
+            let mostCommonSaleType = "N/A";
+            let maxTypeCount = 0;
+            for (const [type, count] of Object.entries(saleTypeAnalysis)) {
+                if (count > maxTypeCount) {
+                    maxTypeCount = count;
+                    mostCommonSaleType = saleTypes[type]?.name || type;
+                }
+            }
+            
             // Atualizar estatísticas
             document.getElementById('total-sales-count').textContent = totalSales;
             document.getElementById('total-sales-amount').textContent = formatCurrency(totalSalesAmount);
+            document.getElementById('total-tables-amount').textContent = formatCurrency(totalTableAmount);
             document.getElementById('total-delivery-amount').textContent = formatCurrency(totalDeliveryFees);
             document.getElementById('total-expenses-amount').textContent = formatCurrency(totalExpensesAmount);
             
-            document.getElementById('total-revenue-no-delivery').textContent = formatCurrency(totalRevenueNoDelivery);
+            document.getElementById('total-revenue-basic').textContent = formatCurrency(totalSalesAmount - totalTableAmount);
+            document.getElementById('total-tables-revenue').textContent = formatCurrency(totalTableAmount);
             document.getElementById('total-revenue-with-delivery').textContent = formatCurrency(totalRevenueWithDelivery);
             document.getElementById('total-expenses').textContent = formatCurrency(totalExpensesAmount);
             document.getElementById('most-used-payment').textContent = mostUsedPayment;
-            document.getElementById('total-deliveries').textContent = totalDeliveriesCount;
+            document.getElementById('most-common-sale-type').textContent = mostCommonSaleType;
             
-            document.getElementById('total-profit-no-delivery').textContent = formatCurrency(profitNoDelivery);
-            document.getElementById('total-profit-with-delivery').textContent = formatCurrency(profitWithDelivery);
-            
-            // Aplicar cores aos lucros
-            document.getElementById('total-profit-no-delivery').className = profitNoDelivery >= 0 ? 'financial-total positive' : 'financial-total negative';
-            document.getElementById('total-profit-with-delivery').className = profitWithDelivery >= 0 ? 'financial-total positive' : 'financial-total negative';
+            document.getElementById('total-profit').textContent = formatCurrency(profitTotal);
+            document.getElementById('total-profit').className = profitTotal >= 0 ? 'financial-total positive' : 'financial-total negative';
         }
 
         // Mostrar notificação
@@ -3382,9 +3917,8 @@
             }, 3000);
         }
 
-        // Imprimir pedido (NOVO - função separada para reutilização)
+        // Imprimir pedido
         function printOrder() {
-            // CORREÇÃO: Usar pedido pendente se existir, senão usar pedido atual
             const pedidoParaImprimir = pendingPrintOrder || currentOrder;
             
             if (pedidoParaImprimir.length === 0) {
@@ -3402,6 +3936,17 @@
                         --------------------
                     </div>
             `;
+            
+            // Adicionar informação do tipo de venda
+            if (selectedSaleType) {
+                const saleType = saleTypes[selectedSaleType]?.name || '';
+                printContent += `
+                    <div style="text-align: center; margin-bottom: 10px; font-weight: bold;">
+                        ${saleType.toUpperCase()}<br>
+                        ${selectedTable ? `MESA: ${selectedTable.name}` : ''}
+                    </div>
+                `;
+            }
             
             pedidoParaImprimir.forEach(item => {
                 printContent += `
@@ -3452,7 +3997,7 @@
             `);
             printWindow.document.close();
             
-            // CORREÇÃO: Limpar pedido pendente após imprimir
+            // Limpar pedido pendente após imprimir
             pendingPrintOrder = null;
             
             showNotification("Pedido impresso para a cozinha!");
@@ -3585,6 +4130,7 @@
             if (tabName === 'pdv') {
                 loadDailyExpenses();
                 loadDeliveryData();
+                loadActiveTables();
                 updateDayInfo();
             }
         }
@@ -3619,23 +4165,23 @@
             updateDeliveryDisplay();
         }
 
-        // Limpar pedido impresso
-        function clearPrintedOrder() {
-            currentOrder = [];
-            renderOrderItems();
-            updateOrderSummary();
-            showNotification("Pedido impresso limpo!");
-        }
-
         // Inicializar event listeners
         function initializeEventListeners() {
-            // Botões do PDV - MODIFICADO
+            // Botões do PDV
             document.getElementById('register-order').addEventListener('click', function() {
                 if (currentOrder.length === 0) {
                     showNotification("Adicione itens ao pedido antes de registrar!", "error");
                     return;
                 }
-                showPaymentModal();
+                
+                // Se já tiver uma mesa selecionada, ir direto para pagamento
+                if (selectedTable) {
+                    selectedSaleType = 'table';
+                    showPaymentModal();
+                } else {
+                    // Caso contrário, mostrar modal de tipo de venda
+                    showSaleTypeModal();
+                }
             });
             
             document.getElementById('clear-order').addEventListener('click', clearOrder);
@@ -3649,6 +4195,13 @@
             // Botão para finalizar delivery
             document.getElementById('finish-delivery').addEventListener('click', finishDeliveryAndSaveSale);
             document.getElementById('skip-delivery').addEventListener('click', skipDelivery);
+            
+            // Botões de Mesas
+            document.getElementById('open-table-modal-btn').addEventListener('click', showTableModal);
+            document.getElementById('refresh-tables-btn').addEventListener('click', function() {
+                loadActiveTables();
+                showNotification("Lista de mesas atualizada!");
+            });
             
             // Botão para adicionar valor avulso
             document.getElementById('add-custom-value').addEventListener('click', function() {
@@ -3688,7 +4241,75 @@
                 }
             });
             
-            // NOVO: Opções de pagamento no modal
+            // Opções de tipo de venda
+            document.querySelectorAll('.sale-type-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.sale-type-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    selectedSaleType = this.id.replace('sale-type-', '');
+                });
+            });
+            
+            // Botões do modal de tipo de venda
+            document.getElementById('confirm-sale-type').addEventListener('click', function() {
+                if (!selectedSaleType) {
+                    showNotification("Selecione um tipo de venda!", "error");
+                    return;
+                }
+                
+                if (selectedSaleType === 'table') {
+                    // Se for mesa, mostrar modal de seleção de mesa
+                    closeSaleTypeModal();
+                    showTableModal();
+                } else {
+                    // Se for delivery ou retirada, mostrar modal de pagamento
+                    closeSaleTypeModal();
+                    showPaymentModal();
+                }
+            });
+            
+            document.getElementById('cancel-sale-type').addEventListener('click', function() {
+                closeSaleTypeModal();
+                showNotification("Seleção de tipo de venda cancelada", "info");
+            });
+            
+            // Botões do modal de mesa
+            document.getElementById('confirm-table').addEventListener('click', function() {
+                const tableNameInput = document.getElementById('new-table-name');
+                let tableName = tableNameInput.value.trim();
+                
+                if (!tableName) {
+                    // Verificar se alguma mesa padrão foi selecionada
+                    const selectedTableOption = document.querySelector('.table-option.selected');
+                    if (selectedTableOption) {
+                        tableName = selectedTableOption.dataset.name;
+                    }
+                }
+                
+                if (!tableName) {
+                    showNotification("Selecione ou digite um nome para a mesa!", "error");
+                    return;
+                }
+                
+                // Verificar se a mesa já existe
+                const existingTable = activeTables.find(table => table.name === tableName);
+                if (existingTable) {
+                    selectedTable = existingTable;
+                    showNotification(`Mesa ${tableName} selecionada!`);
+                } else {
+                    selectedTable = addTable(tableName);
+                }
+                
+                closeTableModal();
+                showPaymentModal();
+            });
+            
+            document.getElementById('cancel-table').addEventListener('click', closeTableModal);
+            
+            // Opções de pagamento no modal
             document.querySelectorAll('.payment-option-modal').forEach(option => {
                 option.addEventListener('click', function() {
                     document.querySelectorAll('.payment-option-modal').forEach(opt => {
@@ -3700,7 +4321,7 @@
                 });
             });
             
-            // NOVO: Botões de confirmação/cancelamento de pagamento no modal
+            // Botões de confirmação/cancelamento de pagamento no modal
             document.getElementById('confirm-payment-modal').addEventListener('click', registerOrderWithPayment);
             document.getElementById('cancel-payment-modal').addEventListener('click', function() {
                 closePaymentModal();
@@ -3797,22 +4418,10 @@
                 closeDriverModal();
             });
             
-            // Modal de confirmação de delivery
-            document.getElementById('delivery-yes').addEventListener('click', startDeliveryFlow);
-            document.getElementById('delivery-no').addEventListener('click', finishSaleWithoutDelivery);
-            document.getElementById('cancel-delivery-confirmation').addEventListener('click', function() {
-                closeDeliveryConfirmationModal();
-                showNotification("Venda cancelada", "info");
-                currentSale = null;
-                // CORREÇÃO: Limpar pedido pendente se cancelar
-                pendingPrintOrder = null;
-            });
-            
-            // NOVO: Modal de confirmação de impressão
+            // Modal de confirmação de impressão
             document.getElementById('confirm-print').addEventListener('click', confirmPrintAfterSale);
             document.getElementById('cancel-print').addEventListener('click', function() {
                 closePrintConfirmationModal();
-                // CORREÇÃO: Limpar pedido pendente se cancelar impressão
                 pendingPrintOrder = null;
                 showNotification("Impressão cancelada", "info");
             });
@@ -3836,10 +4445,11 @@
                     if (document.getElementById('driver-modal').classList.contains('active')) {
                         closeDriverModal();
                     }
-                    if (document.getElementById('delivery-confirmation-modal').classList.contains('active')) {
-                        closeDeliveryConfirmationModal();
-                        currentSale = null;
-                        pendingPrintOrder = null;
+                    if (document.getElementById('sale-type-modal').classList.contains('active')) {
+                        closeSaleTypeModal();
+                    }
+                    if (document.getElementById('table-modal').classList.contains('active')) {
+                        closeTableModal();
                     }
                     if (document.getElementById('payment-modal').classList.contains('active')) {
                         closePaymentModal();
@@ -3861,6 +4471,10 @@
                 if (e.key === 'Enter' && document.getElementById('payment-modal').classList.contains('active') && selectedPaymentMethod) {
                     document.getElementById('confirm-payment-modal').click();
                 }
+                // Permitir Enter no campo de nome da mesa
+                if (e.key === 'Enter' && document.getElementById('new-table-name') === document.activeElement) {
+                    document.getElementById('confirm-table').click();
+                }
             });
             
             // Tabs de navegação
@@ -3870,10 +4484,6 @@
                     switchTab(tabName);
                 });
             });
-            
-            // Botões de pedido impresso
-            document.getElementById('print-order').addEventListener('click', printOrder);
-            document.getElementById('clear-printed-order').addEventListener('click', clearPrintedOrder);
         }
 
         // Inicializar o sistema
@@ -3887,7 +4497,7 @@
             populateYearSelects();
             loadDailyExpenses();
             loadDeliveryData();
-            updatePrintedOrder();
+            loadActiveTables();
             updateDayInfo();
             
             // Configurar mês atual nos seletores
@@ -3898,6 +4508,11 @@
             const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
             if (sales.length > 0) {
                 orderCounter = Math.max(...sales.map(s => s.id)) + 1;
+            }
+            
+            const savedTables = JSON.parse(localStorage.getItem('active_tables') || '[]');
+            if (savedTables.length > 0) {
+                tableCounter = Math.max(...savedTables.map(t => t.id)) + 1;
             }
             
             // Inicializar na aba PDV
