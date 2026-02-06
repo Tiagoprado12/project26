@@ -427,6 +427,11 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
+            display: none;
+        }
+
+        .delivery-section.active {
+            display: block;
         }
 
         .delivery-controls {
@@ -545,187 +550,9 @@
             color: var(--delivery-color);
         }
 
-        /* Área de Formas de Pagamento */
+        /* REMOVIDA Área de Formas de Pagamento fixa */
         .payment-methods {
-            background: var(--light-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
             display: none;
-        }
-
-        .payment-methods.active {
-            display: block;
-        }
-
-        .payment-title {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .payment-option {
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .payment-option:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .payment-option.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(139, 0, 139, 0.05);
-        }
-
-        .payment-option.pix {
-            border-color: var(--pix-color);
-            color: var(--pix-color);
-        }
-
-        .payment-option.pix.selected {
-            background-color: rgba(50, 205, 50, 0.1);
-        }
-
-        .payment-option.cash {
-            border-color: var(--cash-color);
-            color: var(--cash-color);
-        }
-
-        .payment-option.cash.selected {
-            background-color: rgba(255, 215, 0, 0.1);
-        }
-
-        .payment-option.credit {
-            border-color: var(--credit-color);
-            color: var(--credit-color);
-        }
-
-        .payment-option.credit.selected {
-            background-color: rgba(255, 99, 71, 0.1);
-        }
-
-        .payment-option.debit {
-            border-color: var(--debit-color);
-            color: var(--debit-color);
-        }
-
-        .payment-option.debit.selected {
-            background-color: rgba(30, 144, 255, 0.1);
-        }
-
-        /* Botões de Confirmação/Cancelamento de Pagamento - MAIORES */
-        .payment-confirmation {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .payment-confirm-btn {
-            flex: 1;
-            padding: 18px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .payment-confirm-btn.confirm {
-            background-color: var(--success-color);
-            color: white;
-        }
-
-        .payment-confirm-btn.confirm:hover {
-            background-color: #3d8b40;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .payment-confirm-btn.cancel {
-            background-color: var(--danger-color);
-            color: white;
-        }
-
-        .payment-confirm-btn.cancel:hover {
-            background-color: #d32f2f;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(244, 67, 54, 0.3);
-        }
-
-        .expenses-container {
-            flex: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            max-height: 200px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 10px;
-        }
-
-        .expense-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .expense-item:last-child {
-            border-bottom: none;
-        }
-
-        .expense-name {
-            flex: 2;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .expense-value {
-            flex: 1;
-            text-align: right;
-            font-weight: 600;
-            color: var(--danger-color);
-            font-size: 0.9rem;
-        }
-
-        .expense-remove {
-            color: var(--danger-color);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-left: 5px;
-            padding: 3px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .expense-remove:hover {
-            background: rgba(244, 67, 54, 0.1);
         }
 
         .action-buttons {
@@ -787,6 +614,58 @@
             color: white;
             padding: 10px 15px;
             font-size: 0.9rem;
+        }
+
+        .expenses-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            max-height: 200px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .expense-item:last-child {
+            border-bottom: none;
+        }
+
+        .expense-name {
+            flex: 2;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .expense-value {
+            flex: 1;
+            text-align: right;
+            font-weight: 600;
+            color: var(--danger-color);
+            font-size: 0.9rem;
+        }
+
+        .expense-remove {
+            color: var(--danger-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 5px;
+            padding: 3px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .expense-remove:hover {
+            background: rgba(244, 67, 54, 0.1);
         }
 
         .report-controls {
@@ -1171,7 +1050,7 @@
             transform: translateY(0);
         }
 
-        /* Pedido Impresso */
+        /* Pedido Impresso - MODIFICADO: agora é apenas a visualização */
         .printed-order-section {
             background: var(--light-color);
             border-radius: 10px;
@@ -1256,56 +1135,17 @@
             color: #666;
         }
 
-        /* Tabela de Vendas */
-        .sales-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .sales-table th {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .sales-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sales-table tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        .cancel-sale-btn {
-            background-color: var(--danger-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.3s;
-        }
-
-        .cancel-sale-btn:hover {
-            background-color: #d32f2f;
-        }
-
-        /* Modal de Sabores */
+        /* Modal de Sabores - SIMPLIFICADO */
         .flavors-modal {
-            max-width: 600px;
+            max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
         }
 
         .flavors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
             margin-bottom: 20px;
         }
 
@@ -1316,6 +1156,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            text-align: center;
         }
 
         .flavor-card:hover {
@@ -1331,29 +1172,238 @@
 
         .flavor-name {
             font-weight: 600;
-            margin-bottom: 10px;
             color: var(--primary-color);
             font-size: 1.1rem;
-        }
-
-        .flavor-ingredients {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        .flavor-ingredients ul {
-            margin-left: 15px;
-            margin-bottom: 0;
-        }
-
-        .flavor-ingredients li {
-            margin-bottom: 2px;
         }
 
         /* Modal de Entregador */
         .driver-modal {
             max-width: 400px;
+        }
+
+        /* Modal de Confirmação de Delivery */
+        .delivery-confirmation-modal {
+            max-width: 500px;
+        }
+
+        .delivery-question {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .delivery-question-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .delivery-question-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .delivery-question-btn.yes {
+            background-color: var(--delivery-color);
+            color: white;
+        }
+
+        .delivery-question-btn.yes:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .delivery-question-btn.no {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .delivery-question-btn.no:hover {
+            background-color: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Informações do Dia */
+        .day-info {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .day-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .day-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .day-stat {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .day-stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .day-stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Modal de Pagamento (NOVO) */
+        .payment-modal {
+            max-width: 500px;
+        }
+
+        .payment-options-modal {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .payment-option-modal {
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .payment-option-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-option-modal.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(139, 0, 139, 0.05);
+        }
+
+        .payment-option-modal.pix {
+            border-color: var(--pix-color);
+            color: var(--pix-color);
+        }
+
+        .payment-option-modal.pix.selected {
+            background-color: rgba(50, 205, 50, 0.1);
+        }
+
+        .payment-option-modal.cash {
+            border-color: var(--cash-color);
+            color: var(--cash-color);
+        }
+
+        .payment-option-modal.cash.selected {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        .payment-option-modal.credit {
+            border-color: var(--credit-color);
+            color: var(--credit-color);
+        }
+
+        .payment-option-modal.credit.selected {
+            background-color: rgba(255, 99, 71, 0.1);
+        }
+
+        .payment-option-modal.debit {
+            border-color: var(--debit-color);
+            color: var(--debit-color);
+        }
+
+        .payment-option-modal.debit.selected {
+            background-color: rgba(30, 144, 255, 0.1);
+        }
+
+        .payment-confirmation-modal {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Modal de Confirmação de Impressão (NOVO) */
+        .print-confirmation-modal {
+            max-width: 400px;
+        }
+
+        .print-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .print-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .print-btn.yes {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .print-btn.yes:hover {
+            background-color: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .print-btn.no {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .print-btn.no:hover {
+            background-color: #e68900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(255, 152, 0, 0.3);
         }
 
         @media (max-width: 1024px) {
@@ -1416,11 +1466,11 @@
                 width: 100%;
             }
             
-            .payment-options {
+            .payment-options-modal {
                 grid-template-columns: 1fr;
             }
             
-            .payment-confirmation {
+            .payment-confirmation-modal {
                 flex-direction: column;
             }
             
@@ -1436,6 +1486,18 @@
             .flavors-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .delivery-question-buttons {
+                flex-direction: column;
+            }
+            
+            .day-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .print-buttons {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1450,6 +1512,15 @@
             .modal {
                 padding: 20px;
                 width: 95%;
+            }
+            
+            .day-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-option-modal {
+                padding: 15px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -1481,6 +1552,29 @@
         <div class="pdv-container">
             <section class="products-section">
                 <h2 class="section-title"><i class="fas fa-store"></i> Produtos</h2>
+                
+                <!-- Informações do Dia -->
+                <div class="day-info">
+                    <h3><i class="fas fa-calendar-day"></i> Informações do Dia</h3>
+                    <div class="day-stats">
+                        <div class="day-stat">
+                            <div class="day-stat-label">Vendas Hoje</div>
+                            <div class="day-stat-value" id="today-sales-count">0</div>
+                        </div>
+                        <div class="day-stat">
+                            <div class="day-stat-label">Valor Hoje</div>
+                            <div class="day-stat-value" id="today-sales-amount">R$ 0,00</div>
+                        </div>
+                        <div class="day-stat">
+                            <div class="day-stat-label">Delivery Hoje</div>
+                            <div class="day-stat-value" id="today-delivery-count">0</div>
+                        </div>
+                        <div class="day-stat">
+                            <div class="day-stat-label">Saídas Hoje</div>
+                            <div class="day-stat-value" id="today-expenses-amount">R$ 0,00</div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="category">
                     <h3 class="category-title"><i class="fas fa-glass-whiskey"></i> Copos de Açaí</h3>
@@ -1517,7 +1611,7 @@
                     </div>
                 </div>
 
-                <!-- Área de Pedido Impresso -->
+                <!-- Área de Pedido Impresso (agora apenas visualização) -->
                 <div class="printed-order-section">
                     <h3 class="category-title"><i class="fas fa-print"></i> Pedido para Cozinha</h3>
                     <div class="printed-order" id="printed-order">
@@ -1562,8 +1656,8 @@
                     </div>
                 </div>
                 
-                <!-- Área de Delivery -->
-                <div class="delivery-section">
+                <!-- Área de Delivery (agora só aparece após confirmação da venda) -->
+                <div class="delivery-section" id="delivery-section">
                     <h3 class="category-title"><i class="fas fa-motorcycle"></i> Controle de Delivery</h3>
                     <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
                         <i class="fas fa-info-circle"></i> Taxa padrão: R$ 4,00 por entrega
@@ -1591,37 +1685,13 @@
                     <div id="delivery-driver-display" class="delivery-driver-info" style="display: none;">
                         <strong>Entregador:</strong> <span id="current-driver-name">Não definido</span>
                     </div>
-                </div>
-                
-                <!-- Área de Formas de Pagamento -->
-                <div class="payment-methods" id="payment-methods">
-                    <h3 class="payment-title">Selecione a Forma de Pagamento</h3>
-                    <div class="payment-options">
-                        <div class="payment-option pix" data-method="pix">
-                            <i class="fas fa-qrcode"></i>
-                            <span>PIX</span>
-                        </div>
-                        <div class="payment-option cash" data-method="dinheiro">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span>Dinheiro</span>
-                        </div>
-                        <div class="payment-option credit" data-method="credito">
-                            <i class="fas fa-credit-card"></i>
-                            <span>Crédito</span>
-                        </div>
-                        <div class="payment-option debit" data-method="debito">
-                            <i class="fas fa-credit-card"></i>
-                            <span>Débito</span>
-                        </div>
-                    </div>
                     
-                    <!-- Botões de Confirmação/Cancelamento MAIORES -->
-                    <div class="payment-confirmation">
-                        <button class="payment-confirm-btn confirm" id="confirm-payment">
-                            <i class="fas fa-check-circle"></i> CONFIRMAR VENDA
+                    <div class="action-buttons" style="margin-top: 15px;">
+                        <button class="btn btn-register" id="finish-delivery">
+                            <i class="fas fa-check-circle"></i> Finalizar Delivery
                         </button>
-                        <button class="payment-confirm-btn cancel" id="cancel-payment">
-                            <i class="fas fa-times-circle"></i> CANCELAR
+                        <button class="btn btn-cancel" id="skip-delivery">
+                            <i class="fas fa-times-circle"></i> Pular
                         </button>
                     </div>
                 </div>
@@ -1840,7 +1910,7 @@
         </div>
     </div>
     
-    <!-- Modal de Sabores -->
+    <!-- Modal de Sabores (SIMPLIFICADO) -->
     <div class="modal-overlay" id="flavors-modal">
         <div class="modal flavors-modal">
             <h3 class="modal-title">
@@ -1886,6 +1956,93 @@
         </div>
     </div>
     
+    <!-- Modal de Confirmação de Delivery -->
+    <div class="modal-overlay" id="delivery-confirmation-modal">
+        <div class="modal delivery-confirmation-modal">
+            <h3 class="modal-title">
+                <i class="fas fa-motorcycle"></i> Esta venda é um delivery?
+            </h3>
+            <div class="delivery-question">
+                Após confirmar o pagamento, informe se é para entrega
+            </div>
+            <div class="delivery-question-buttons">
+                <button class="delivery-question-btn yes" id="delivery-yes">
+                    <i class="fas fa-motorcycle"></i>
+                    <span>SIM, é delivery</span>
+                </button>
+                <button class="delivery-question-btn no" id="delivery-no">
+                    <i class="fas fa-store"></i>
+                    <span>NÃO, é retirada</span>
+                </button>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancel-delivery-confirmation">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NOVO: Modal de Pagamento (Popup) -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal payment-modal">
+            <h3 class="modal-title">
+                <i class="fas fa-credit-card"></i> Forma de Pagamento
+            </h3>
+            <p style="margin-bottom: 20px; color: #666;">
+                Selecione a forma de pagamento para a venda:
+            </p>
+            
+            <div class="payment-options-modal">
+                <div class="payment-option-modal pix" data-method="pix">
+                    <i class="fas fa-qrcode"></i>
+                    <span>PIX</span>
+                </div>
+                <div class="payment-option-modal cash" data-method="dinheiro">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Dinheiro</span>
+                </div>
+                <div class="payment-option-modal credit" data-method="credito">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Crédito</span>
+                </div>
+                <div class="payment-option-modal debit" data-method="debito">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Débito</span>
+                </div>
+            </div>
+            
+            <div class="payment-confirmation-modal">
+                <button class="modal-btn modal-btn-confirm" id="confirm-payment-modal">
+                    <i class="fas fa-check-circle"></i> CONFIRMAR VENDA
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-payment-modal">
+                    <i class="fas fa-times-circle"></i> CANCELAR
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NOVO: Modal de Confirmação de Impressão -->
+    <div class="modal-overlay" id="print-confirmation-modal">
+        <div class="modal print-confirmation-modal">
+            <h3 class="modal-title">
+                <i class="fas fa-print"></i> Imprimir Pedido?
+            </h3>
+            <p style="margin-bottom: 25px; text-align: center; color: #666;">
+                Deseja imprimir o pedido para a cozinha?
+            </p>
+            <div class="print-buttons">
+                <button class="print-btn yes" id="confirm-print">
+                    <i class="fas fa-print"></i> SIM, Imprimir
+                </button>
+                <button class="print-btn no" id="cancel-print">
+                    <i class="fas fa-times"></i> NÃO, Obrigado
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <p>Sistema PDV Açaiteria &copy; 2023 - Controle Completo de Vendas e Delivery</p>
     </footer>
@@ -1915,58 +2072,18 @@
             ]
         };
 
-        // Sabores do cardápio
+        // Sabores do cardápio (SIMPLIFICADO)
         const flavors = [
-            {
-                id: 1,
-                name: "Açaí Tropical",
-                ingredients: ["Banana", "Morango", "Granola", "Uva", "Leite Condensado"]
-            },
-            {
-                id: 2,
-                name: "Açaí Sonho de Valsa",
-                ingredients: ["Leite Ninho", "Leite Condensado", "Canudo Wafer", "ChocoBall", "Chantilly", "Sonho de Valsa"]
-            },
-            {
-                id: 3,
-                name: "Açaí Kids",
-                ingredients: ["Leite Ninho", "Calda de Leite Ninho", "Canudo Wafer", "ChocoBall", "M&M", "Chantilly"]
-            },
-            {
-                id: 4,
-                name: "Açaí Bis",
-                ingredients: ["Leite Condensado", "ChocoBall", "Bis", "Leite Ninho", "Chantilly"]
-            },
-            {
-                id: 5,
-                name: "Açaí Nutella",
-                ingredients: ["Nutella", "ChocoBall", "Ovomaltine", "Chantilly"]
-            },
-            {
-                id: 6,
-                name: "Açaí Láctea",
-                ingredients: ["Banana", "Farinha Láctea", "Granola", "Chantilly", "Leite Ninho", "Leite Condensado"]
-            },
-            {
-                id: 7,
-                name: "Açaí Paçoca",
-                ingredients: ["Banana", "Leite Condensado", "Paçoca", "Cereja", "Chantilly"]
-            },
-            {
-                id: 8,
-                name: "Açaí Amendoim",
-                ingredients: ["Leite Ninho", "Leite Condensado", "Amendoim", "Bis", "Paçoca", "Chantilly"]
-            },
-            {
-                id: 9,
-                name: "Açaí Chocolate",
-                ingredients: ["Chantilly", "Morango", "Nutella", "Leite Ninho", "Gotas de chocolate ou Granola"]
-            },
-            {
-                id: 10,
-                name: "Açaí Nutella com Morango",
-                ingredients: ["Nutella", "Morango", "Chantilly", "Leite Condensado", "Granola"]
-            }
+            { id: 1, name: "Açaí Tropical" },
+            { id: 2, name: "Açaí Sonho de Valsa" },
+            { id: 3, name: "Açaí Kids" },
+            { id: 4, name: "Açaí Bis" },
+            { id: 5, name: "Açaí Nutella" },
+            { id: 6, name: "Açaí Láctea" },
+            { id: 7, name: "Açaí Paçoca" },
+            { id: 8, name: "Açaí Amendoim" },
+            { id: 9, name: "Açaí Chocolate" },
+            { id: 10, name: "Açaí Nutella com Morango" }
         ];
 
         // Formas de pagamento
@@ -1990,11 +2107,13 @@
         let orderCounter = 1;
         let currentMonthFilter = null;
         let selectedPaymentMethod = null;
-        let isPaymentStep = false;
         let currentModalAction = null;
         let currentSaleToCancel = null;
         let selectedAcaiSize = null;
         let selectedFlavor = null;
+        let currentSale = null;
+        let isDeliveryFlow = false;
+        let pendingPrintOrder = null; // CORREÇÃO: Variável para armazenar pedido pendente de impressão
 
         // Configurações de segurança
         const ADMIN_PASSWORD = "admin123";
@@ -2002,6 +2121,9 @@
             "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
             "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
         ];
+
+        // Chave para armazenar a última data de reset
+        const LAST_RESET_KEY = "last_reset_date";
 
         // Formatar valor para Real brasileiro
         function formatCurrency(value) {
@@ -2015,6 +2137,70 @@
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR');
+        }
+
+        // Verificar e resetar dados diários
+        function checkAndResetDailyData() {
+            const today = new Date().toDateString();
+            const lastReset = localStorage.getItem(LAST_RESET_KEY);
+            
+            if (lastReset !== today) {
+                // Resetar dados do PDV (mas manter histórico)
+                currentOrder = [];
+                dailyExpenses = [];
+                deliveryCount = 0;
+                deliveryTotalValue = 0;
+                deliveryFee = STANDARD_DELIVERY_FEE;
+                deliveryDriverName = "";
+                
+                // Limpar localStorage do dia
+                localStorage.removeItem('daily_expenses');
+                localStorage.removeItem('delivery_count');
+                localStorage.removeItem('delivery_total');
+                localStorage.removeItem('delivery_fee');
+                localStorage.removeItem('delivery_driver');
+                localStorage.removeItem('today_sales');
+                
+                // Salvar data do reset
+                localStorage.setItem(LAST_RESET_KEY, today);
+                
+                // Atualizar interface
+                renderOrderItems();
+                updateOrderSummary();
+                renderDailyExpenses();
+                updateDeliveryDisplay();
+                updatePrintedOrder();
+                updateDayInfo();
+                
+                console.log("Dados diários resetados para novo dia");
+            }
+        }
+
+        // Atualizar informações do dia
+        function updateDayInfo() {
+            const today = new Date().toLocaleDateString('pt-BR');
+            
+            // Vendas de hoje
+            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+            const todaySalesCount = todaySales.length;
+            const todaySalesAmount = todaySales.reduce((sum, sale) => sum + sale.total, 0);
+            
+            // Deliveries de hoje
+            const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
+            const todayDeliveries = deliveries.filter(d => {
+                const deliveryDate = new Date(d.date).toLocaleDateString('pt-BR');
+                return deliveryDate === today;
+            });
+            const todayDeliveryCount = todayDeliveries.reduce((sum, d) => sum + d.count, 0);
+            
+            // Despesas de hoje
+            const todayExpenses = JSON.parse(localStorage.getItem('daily_expenses') || '[]');
+            const todayExpensesAmount = todayExpenses.reduce((sum, expense) => sum + expense.value, 0);
+            
+            document.getElementById('today-sales-count').textContent = todaySalesCount;
+            document.getElementById('today-sales-amount').textContent = formatCurrency(todaySalesAmount);
+            document.getElementById('today-delivery-count').textContent = todayDeliveryCount;
+            document.getElementById('today-expenses-amount').textContent = formatCurrency(todayExpensesAmount);
         }
 
         // Atualizar o resumo do pedido
@@ -2074,7 +2260,7 @@
             });
             
             // Se não tem entregador definido e é a primeira entrega do dia
-            if (!deliveryDriverName && todayDeliveries.length === 0) {
+            if (!deliveryDriverName && todayDeliveries.length === 0 && deliveryCount === 0) {
                 showDriverModal();
                 return true;
             }
@@ -2085,7 +2271,8 @@
         function addDelivery(customFee = null, isCustom = false) {
             // Verificar se precisa pedir nome do entregador
             if (checkDriverName()) {
-                return; // Aguardar usuário definir o nome
+                // Adicionar depois que o usuário definir o nome
+                return; 
             }
             
             if (customFee !== null) {
@@ -2097,22 +2284,6 @@
             deliveryCount++;
             updateDeliveryDisplay();
             
-            // Registrar a entrega no histórico
-            const deliveryRecord = {
-                id: Date.now(),
-                date: new Date().toISOString(),
-                type: isCustom ? "custom" : "standard",
-                fee: deliveryFee,
-                count: deliveryCount,
-                total: deliveryCount * deliveryFee,
-                driver: deliveryDriverName
-            };
-            
-            // Salvar no histórico de deliveries
-            const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
-            deliveries.push(deliveryRecord);
-            localStorage.setItem('deliveries', JSON.stringify(deliveries));
-            
             showNotification(`Delivery adicionado! Total: ${deliveryCount} entrega(s)`);
         }
 
@@ -2120,13 +2291,6 @@
         function removeDelivery() {
             if (deliveryCount > 0) {
                 deliveryCount--;
-                
-                // Atualizar histórico de deliveries
-                const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
-                if (deliveries.length > 0) {
-                    deliveries.pop(); // Remove a última entrega
-                    localStorage.setItem('deliveries', JSON.stringify(deliveries));
-                }
                 
                 updateDeliveryDisplay();
                 showNotification(`Delivery removido! Total: ${deliveryCount} entrega(s)`);
@@ -2160,6 +2324,43 @@
             document.getElementById('driver-name-input').value = '';
         }
 
+        // Mostrar modal de confirmação de delivery
+        function showDeliveryConfirmationModal() {
+            document.getElementById('delivery-confirmation-modal').classList.add('active');
+        }
+
+        // Fechar modal de confirmação de delivery
+        function closeDeliveryConfirmationModal() {
+            document.getElementById('delivery-confirmation-modal').classList.remove('active');
+        }
+
+        // MOSTRAR MODAL DE PAGAMENTO (NOVO)
+        function showPaymentModal() {
+            selectedPaymentMethod = null;
+            
+            // Limpar seleção anterior
+            document.querySelectorAll('.payment-option-modal').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.getElementById('payment-modal').classList.add('active');
+        }
+
+        // FECHAR MODAL DE PAGAMENTO (NOVO)
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.remove('active');
+        }
+
+        // MOSTRAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO (NOVO)
+        function showPrintConfirmationModal() {
+            document.getElementById('print-confirmation-modal').classList.add('active');
+        }
+
+        // FECHAR MODAL DE CONFIRMAÇÃO DE IMPRESSÃO (NOVO)
+        function closePrintConfirmationModal() {
+            document.getElementById('print-confirmation-modal').classList.remove('active');
+        }
+
         // Adicionar item ao pedido
         function addToOrder(product) {
             const orderItem = {
@@ -2179,7 +2380,7 @@
             showNotification(`${product.name} adicionado ao pedido!`);
         }
 
-        // Mostrar modal de sabores
+        // Mostrar modal de sabores (SIMPLIFICADO)
         function showFlavorsModal(product) {
             selectedAcaiSize = product;
             document.getElementById('selected-size-info').textContent = 
@@ -2213,7 +2414,7 @@
                 productId: selectedAcaiSize.id,
                 name: `${selectedAcaiSize.name} - ${selectedFlavor.name}`,
                 price: selectedAcaiSize.price,
-                details: `Ingredientes: ${selectedFlavor.ingredients.join(', ')}`,
+                details: `Sabor: ${selectedFlavor.name}`,
                 size: selectedAcaiSize.size,
                 flavor: selectedFlavor.name
             };
@@ -2315,27 +2516,7 @@
             `;
         }
 
-        // Mostrar opções de pagamento
-        function showPaymentOptions() {
-            isPaymentStep = true;
-            document.getElementById('payment-methods').classList.add('active');
-            document.getElementById('register-order').style.display = 'none';
-            
-            // Resetar seleção anterior
-            selectedPaymentMethod = null;
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-        }
-
-        // Esconder opções de pagamento
-        function hidePaymentOptions() {
-            isPaymentStep = false;
-            document.getElementById('payment-methods').classList.remove('active');
-            document.getElementById('register-order').style.display = 'flex';
-        }
-
-        // Registrar venda com forma de pagamento
+        // Registrar venda com forma de pagamento (MODIFICADO)
         function registerOrderWithPayment() {
             if (!selectedPaymentMethod) {
                 showNotification("Selecione uma forma de pagamento!", "error");
@@ -2348,47 +2529,163 @@
                 return;
             }
             
-            const sale = {
+            // CORREÇÃO: Salvar pedido atual antes de limpar
+            const pedidoParaImpressao = [...currentOrder];
+            
+            currentSale = {
                 id: orderCounter++,
                 date: new Date().toISOString(),
                 items: [...currentOrder],
                 subtotal: currentOrder.reduce((sum, item) => sum + item.price, 0),
                 total: currentOrder.reduce((sum, item) => sum + item.price, 0),
                 paymentMethod: selectedPaymentMethod,
-                deliveryCount: deliveryCount,
-                deliveryFee: deliveryFee,
-                deliveryTotal: deliveryTotalValue,
-                deliveryDriver: deliveryDriverName
+                deliveryCount: 0,
+                deliveryFee: 0,
+                deliveryTotal: 0,
+                deliveryDriver: ""
             };
-            
-            const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
-            sales.push(sale);
-            localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
-            
-            // Registrar também no histórico de vendas do dia
-            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
-            todaySales.push(sale);
-            localStorage.setItem('today_sales', JSON.stringify(todaySales));
             
             // Limpar pedido atual
             currentOrder = [];
             selectedPaymentMethod = null;
             renderOrderItems();
             updateOrderSummary();
-            hidePaymentOptions();
+            closePaymentModal();
             
-            showNotification(`Venda #${sale.id} registrada com sucesso! Pagamento: ${paymentMethods[selectedPaymentMethod].name}`);
+            // CORREÇÃO: Salvar pedido para impressão
+            pendingPrintOrder = pedidoParaImpressao;
             
-            // Resetar delivery após venda
-            deliveryCount = 0;
-            deliveryTotalValue = 0;
-            deliveryFee = STANDARD_DELIVERY_FEE;
-            updateDeliveryDisplay();
+            // Mostrar modal para perguntar se é delivery
+            showDeliveryConfirmationModal();
+        }
+
+        // Finalizar venda sem delivery
+        function finishSaleWithoutDelivery() {
+            if (!currentSale) return;
+            
+            // Salvar venda sem delivery
+            const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
+            sales.push(currentSale);
+            localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
+            
+            // Registrar também no histórico de vendas do dia
+            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+            todaySales.push(currentSale);
+            localStorage.setItem('today_sales', JSON.stringify(todaySales));
+            
+            showNotification(`Venda #${currentSale.id} registrada com sucesso! Pagamento: ${paymentMethods[currentSale.paymentMethod]?.name || 'N/A'}`);
+            
+            // Atualizar informações do dia
+            updateDayInfo();
             
             // Atualizar relatório se estiver na tela de relatórios
             if (document.getElementById('reports-container').classList.contains('active')) {
                 loadSalesReport();
             }
+            
+            // CORREÇÃO: Mostrar modal de confirmação de impressão para ambos os casos
+            showPrintConfirmationModal();
+            
+            currentSale = null;
+            closeDeliveryConfirmationModal();
+        }
+
+        // Iniciar fluxo de delivery
+        function startDeliveryFlow() {
+            if (!currentSale) return;
+            
+            isDeliveryFlow = true;
+            
+            // Mostrar seção de delivery
+            document.getElementById('delivery-section').classList.add('active');
+            
+            // Resetar contador de delivery para esta venda
+            deliveryCount = 0;
+            deliveryTotalValue = 0;
+            updateDeliveryDisplay();
+            
+            closeDeliveryConfirmationModal();
+        }
+
+        // Finalizar delivery e salvar venda
+        function finishDeliveryAndSaveSale() {
+            if (!currentSale) return;
+            
+            // Atualizar venda com informações de delivery
+            currentSale.deliveryCount = deliveryCount;
+            currentSale.deliveryFee = deliveryFee;
+            currentSale.deliveryTotal = deliveryTotalValue;
+            currentSale.deliveryDriver = deliveryDriverName;
+            
+            // Salvar venda
+            const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
+            sales.push(currentSale);
+            localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
+            
+            // Registrar também no histórico de vendas do dia
+            const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+            todaySales.push(currentSale);
+            localStorage.setItem('today_sales', JSON.stringify(todaySales));
+            
+            // Registrar entregas no histórico
+            if (deliveryCount > 0) {
+                const deliveryRecord = {
+                    id: Date.now(),
+                    date: new Date().toISOString(),
+                    type: deliveryFee === STANDARD_DELIVERY_FEE ? "standard" : "custom",
+                    fee: deliveryFee,
+                    count: deliveryCount,
+                    total: deliveryTotalValue,
+                    driver: deliveryDriverName,
+                    saleId: currentSale.id
+                };
+                
+                const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
+                deliveries.push(deliveryRecord);
+                localStorage.setItem('deliveries', JSON.stringify(deliveries));
+            }
+            
+            showNotification(`Venda #${currentSale.id} com ${deliveryCount} entrega(s) registrada com sucesso!`);
+            
+            // Resetar delivery
+            deliveryCount = 0;
+            deliveryTotalValue = 0;
+            deliveryFee = STANDARD_DELIVERY_FEE;
+            updateDeliveryDisplay();
+            
+            // Esconder seção de delivery
+            document.getElementById('delivery-section').classList.remove('active');
+            isDeliveryFlow = false;
+            
+            // Atualizar informações do dia
+            updateDayInfo();
+            
+            // Atualizar relatório se estiver na tela de relatórios
+            if (document.getElementById('reports-container').classList.contains('active')) {
+                loadSalesReport();
+            }
+            
+            // CORREÇÃO: Mostrar modal de confirmação de impressão para ambos os casos
+            showPrintConfirmationModal();
+            
+            currentSale = null;
+        }
+
+        // Pular delivery (salvar venda sem delivery)
+        function skipDelivery() {
+            if (!currentSale) return;
+            
+            // Esconder seção de delivery
+            document.getElementById('delivery-section').classList.remove('active');
+            isDeliveryFlow = false;
+            
+            // Resetar delivery
+            deliveryCount = 0;
+            deliveryTotalValue = 0;
+            updateDeliveryDisplay();
+            
+            // Salvar venda sem delivery
+            finishSaleWithoutDelivery();
         }
 
         // Cancelar venda registrada
@@ -2411,8 +2708,14 @@
             const updatedTodaySales = todaySales.filter(sale => sale.id !== currentSaleToCancel);
             localStorage.setItem('today_sales', JSON.stringify(updatedTodaySales));
             
+            // Remover deliveries associados a esta venda
+            const deliveries = JSON.parse(localStorage.getItem('deliveries') || '[]');
+            const updatedDeliveries = deliveries.filter(d => d.saleId !== currentSaleToCancel);
+            localStorage.setItem('deliveries', JSON.stringify(updatedDeliveries));
+            
             showNotification(`Venda #${currentSaleToCancel} cancelada com sucesso!`, "warning");
             loadSalesReport();
+            updateDayInfo();
             currentSaleToCancel = null;
         }
 
@@ -2427,9 +2730,6 @@
                 currentOrder = [];
                 renderOrderItems();
                 updateOrderSummary();
-                if (isPaymentStep) {
-                    hidePaymentOptions();
-                }
                 showNotification("Pedido limpo com sucesso!");
             }
         }
@@ -2445,9 +2745,6 @@
                 currentOrder = [];
                 renderOrderItems();
                 updateOrderSummary();
-                if (isPaymentStep) {
-                    hidePaymentOptions();
-                }
                 showNotification("Pedido cancelado!");
             }
         }
@@ -2485,6 +2782,7 @@
             descriptionInput.value = '';
             
             showNotification("Despesa do dia registrada!");
+            updateDayInfo();
         }
 
         // Remover despesa do dia
@@ -2498,6 +2796,7 @@
                 localStorage.setItem('daily_expenses', JSON.stringify(dailyExpenses));
                 
                 showNotification("Despesa removida!");
+                updateDayInfo();
             }
         }
 
@@ -2587,11 +2886,11 @@
             
             // Seção de Delivery
             csvContent += "\n\nDELIVERY\n";
-            csvContent += "ID;Data;Hora;Quantidade Entregas;Taxa Unitária;Valor Total;Entregador\n";
+            csvContent += "ID;Data;Hora;Quantidade Entregas;Taxa Unitária;Valor Total;Entregador;ID Venda\n";
             
             deliveries.forEach(delivery => {
                 const date = new Date(delivery.date);
-                csvContent += `${delivery.id};${date.toLocaleDateString('pt-BR')};${date.toLocaleTimeString('pt-BR')};${delivery.count};${delivery.fee.toFixed(2).replace('.', ',')};${delivery.total.toFixed(2).replace('.', ',')};"${delivery.driver || 'Não informado'}"\n`;
+                csvContent += `${delivery.id};${date.toLocaleDateString('pt-BR')};${date.toLocaleTimeString('pt-BR')};${delivery.count};${delivery.fee.toFixed(2).replace('.', ',')};${delivery.total.toFixed(2).replace('.', ',')};"${delivery.driver || 'Não informado'}";${delivery.saleId || ''}\n`;
             });
             
             // Seção de Despesas do Dia
@@ -2681,7 +2980,7 @@
                     sale.items.forEach(item => {
                         const flavorInfo = item.flavor ? ` [${item.flavor}]` : '';
                         txtContent += `• ${item.name}${flavorInfo.padEnd(35)} ${formatCurrency(item.price).padStart(15)}\n`;
-                        if (item.details && item.details.includes('Ingredientes:')) {
+                        if (item.details && item.details.includes('Sabor:')) {
                             txtContent += `  ${item.details}\n`;
                         }
                     });
@@ -2710,7 +3009,7 @@
                 
                 deliveries.forEach(delivery => {
                     const date = new Date(delivery.date);
-                    txtContent += `• ${date.toLocaleDateString('pt-BR')} ${date.toLocaleTimeString('pt-BR').padEnd(15)} ${delivery.count.toString().padStart(3)} entrega(s) ${formatCurrency(delivery.total).padStart(15)} ${delivery.driver ? `- ${delivery.driver}` : ''}\n`;
+                    txtContent += `• ${date.toLocaleDateString('pt-BR')} ${date.toLocaleTimeString('pt-BR').padEnd(15)} ${delivery.count.toString().padStart(3)} entrega(s) ${formatCurrency(delivery.total).padStart(15)} ${delivery.driver ? `- ${delivery.driver}` : ''}${delivery.saleId ? ` (Venda #${delivery.saleId})` : ''}\n`;
                 });
                 txtContent += "\n";
             }
@@ -2842,6 +3141,7 @@
                     localStorage.removeItem('delivery_total');
                     localStorage.removeItem('delivery_fee');
                     localStorage.removeItem('delivery_driver');
+                    localStorage.removeItem(LAST_RESET_KEY);
                     
                     orderCounter = 1;
                     currentMonthFilter = null;
@@ -2861,6 +3161,7 @@
                         renderDailyExpenses();
                         updateDeliveryDisplay();
                         updatePrintedOrder();
+                        updateDayInfo();
                     }
                     if (document.getElementById('reports-container').classList.contains('active')) {
                         loadSalesReport();
@@ -3081,6 +3382,88 @@
             }, 3000);
         }
 
+        // Imprimir pedido (NOVO - função separada para reutilização)
+        function printOrder() {
+            // CORREÇÃO: Usar pedido pendente se existir, senão usar pedido atual
+            const pedidoParaImprimir = pendingPrintOrder || currentOrder;
+            
+            if (pedidoParaImprimir.length === 0) {
+                showNotification("Adicione itens ao pedido antes de imprimir!", "warning");
+                return;
+            }
+            
+            // Criar conteúdo para impressão
+            let printContent = `
+                <div style="font-family: 'Courier New', monospace; font-size: 12px; width: 58mm;">
+                    <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+                        QUERO MAIS AÇAÍ<br>
+                        PEDIDO PARA COZINHA<br>
+                        ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR').substring(0, 5)}<br>
+                        --------------------
+                    </div>
+            `;
+            
+            pedidoParaImprimir.forEach(item => {
+                printContent += `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>${item.name}</span>
+                        <span>${formatCurrency(item.price)}</span>
+                    </div>
+                `;
+                
+                // Adicionar detalhes do sabor se for açaí
+                if (item.details) {
+                    printContent += `
+                        <div style="font-size: 10px; color: #666; margin-left: 10px; margin-bottom: 5px;">
+                            ${item.details}
+                        </div>
+                    `;
+                }
+            });
+            
+            const subtotal = pedidoParaImprimir.reduce((sum, item) => sum + item.price, 0);
+            printContent += `
+                    <div style="border-top: 1px dashed #000; margin-top: 10px; padding-top: 10px;">
+                        <div style="text-align: center; font-weight: bold;">
+                            TOTAL: ${formatCurrency(subtotal)}<br>
+                            --------------------<br>
+                            🍓🍌🥝 AÇAÍ SABOROSO! 🥭🍯🍓
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Criar janela de impressão
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Pedido para Cozinha</title>
+                        <style>
+                            @media print {
+                                body { margin: 0; padding: 0; }
+                            }
+                        </style>
+                    </head>
+                    <body onload="window.print(); window.close();">
+                        ${printContent}
+                    </body>
+                </html>
+            `);
+            printWindow.document.close();
+            
+            // CORREÇÃO: Limpar pedido pendente após imprimir
+            pendingPrintOrder = null;
+            
+            showNotification("Pedido impresso para a cozinha!");
+        }
+
+        // Função para confirmar impressão após venda
+        function confirmPrintAfterSale() {
+            printOrder();
+            closePrintConfirmationModal();
+        }
+
         // Inicializar produtos na interface
         function initializeProducts() {
             const acaiProductsContainer = document.getElementById('acai-products');
@@ -3131,19 +3514,14 @@
                 bebidasContainer.appendChild(productElement);
             });
             
-            // Sabores no modal
+            // Sabores no modal (SIMPLIFICADO)
             flavors.forEach(flavor => {
                 const flavorElement = document.createElement('div');
                 flavorElement.className = 'flavor-card';
                 flavorElement.dataset.id = flavor.id;
                 
-                const ingredientsList = flavor.ingredients.map(ing => `<li>${ing}</li>`).join('');
-                
                 flavorElement.innerHTML = `
                     <div class="flavor-name">${flavor.name}</div>
-                    <div class="flavor-ingredients">
-                        <ul>${ingredientsList}</ul>
-                    </div>
                 `;
                 
                 flavorElement.addEventListener('click', () => {
@@ -3207,6 +3585,7 @@
             if (tabName === 'pdv') {
                 loadDailyExpenses();
                 loadDeliveryData();
+                updateDayInfo();
             }
         }
 
@@ -3240,76 +3619,6 @@
             updateDeliveryDisplay();
         }
 
-        // Imprimir pedido
-        function printOrder() {
-            if (currentOrder.length === 0) {
-                showNotification("Adicione itens ao pedido antes de imprimir!", "warning");
-                return;
-            }
-            
-            // Criar conteúdo para impressão
-            let printContent = `
-                <div style="font-family: 'Courier New', monospace; font-size: 12px; width: 58mm;">
-                    <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
-                        QUERO MAIS AÇAÍ<br>
-                        PEDIDO PARA COZINHA<br>
-                        ${new Date().toLocaleDateString('pt-BR')} ${new Date().toLocaleTimeString('pt-BR').substring(0, 5)}<br>
-                        --------------------
-                    </div>
-            `;
-            
-            currentOrder.forEach(item => {
-                printContent += `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>${item.name}</span>
-                        <span>${formatCurrency(item.price)}</span>
-                    </div>
-                `;
-                
-                // Adicionar detalhes do sabor se for açaí
-                if (item.details) {
-                    printContent += `
-                        <div style="font-size: 10px; color: #666; margin-left: 10px; margin-bottom: 5px;">
-                            ${item.details}
-                        </div>
-                    `;
-                }
-            });
-            
-            const subtotal = currentOrder.reduce((sum, item) => sum + item.price, 0);
-            printContent += `
-                    <div style="border-top: 1px dashed #000; margin-top: 10px; padding-top: 10px;">
-                        <div style="text-align: center; font-weight: bold;">
-                            TOTAL: ${formatCurrency(subtotal)}<br>
-                            --------------------<br>
-                            🍓🍌🥝 AÇAÍ SABOROSO! 🥭🍯🍓
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Criar janela de impressão
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Pedido para Cozinha</title>
-                        <style>
-                            @media print {
-                                body { margin: 0; padding: 0; }
-                            }
-                        </style>
-                    </head>
-                    <body onload="window.print(); window.close();">
-                        ${printContent}
-                    </body>
-                </html>
-            `);
-            printWindow.document.close();
-            
-            showNotification("Pedido impresso para a cozinha!");
-        }
-
         // Limpar pedido impresso
         function clearPrintedOrder() {
             currentOrder = [];
@@ -3320,8 +3629,15 @@
 
         // Inicializar event listeners
         function initializeEventListeners() {
-            // Botões do PDV
-            document.getElementById('register-order').addEventListener('click', showPaymentOptions);
+            // Botões do PDV - MODIFICADO
+            document.getElementById('register-order').addEventListener('click', function() {
+                if (currentOrder.length === 0) {
+                    showNotification("Adicione itens ao pedido antes de registrar!", "error");
+                    return;
+                }
+                showPaymentModal();
+            });
+            
             document.getElementById('clear-order').addEventListener('click', clearOrder);
             document.getElementById('cancel-order').addEventListener('click', cancelOrder);
             
@@ -3329,6 +3645,10 @@
             document.getElementById('add-delivery-modal-btn').addEventListener('click', showDeliveryModal);
             document.getElementById('add-delivery-quick').addEventListener('click', () => addDelivery());
             document.getElementById('remove-delivery').addEventListener('click', removeDelivery);
+            
+            // Botão para finalizar delivery
+            document.getElementById('finish-delivery').addEventListener('click', finishDeliveryAndSaveSale);
+            document.getElementById('skip-delivery').addEventListener('click', skipDelivery);
             
             // Botão para adicionar valor avulso
             document.getElementById('add-custom-value').addEventListener('click', function() {
@@ -3368,10 +3688,10 @@
                 }
             });
             
-            // Opções de pagamento
-            document.querySelectorAll('.payment-option').forEach(option => {
+            // NOVO: Opções de pagamento no modal
+            document.querySelectorAll('.payment-option-modal').forEach(option => {
                 option.addEventListener('click', function() {
-                    document.querySelectorAll('.payment-option').forEach(opt => {
+                    document.querySelectorAll('.payment-option-modal').forEach(opt => {
                         opt.classList.remove('selected');
                     });
                     
@@ -3380,10 +3700,10 @@
                 });
             });
             
-            // Botões de confirmação/cancelamento de pagamento
-            document.getElementById('confirm-payment').addEventListener('click', registerOrderWithPayment);
-            document.getElementById('cancel-payment').addEventListener('click', function() {
-                hidePaymentOptions();
+            // NOVO: Botões de confirmação/cancelamento de pagamento no modal
+            document.getElementById('confirm-payment-modal').addEventListener('click', registerOrderWithPayment);
+            document.getElementById('cancel-payment-modal').addEventListener('click', function() {
+                closePaymentModal();
                 showNotification("Pagamento cancelado", "info");
             });
             
@@ -3470,21 +3790,31 @@
                     showNotification("Nome do entregador não definido", "warning");
                 }
                 closeDriverModal();
-                
-                // Agora pode adicionar a entrega
-                if (currentModalAction === 'pending_delivery') {
-                    addDelivery();
-                }
             });
             
             document.getElementById('cancel-driver').addEventListener('click', function() {
                 showNotification("Entregador não definido. Pode definir depois.", "info");
                 closeDriverModal();
-                
-                // Adicionar entrega mesmo sem nome
-                if (currentModalAction === 'pending_delivery') {
-                    addDelivery();
-                }
+            });
+            
+            // Modal de confirmação de delivery
+            document.getElementById('delivery-yes').addEventListener('click', startDeliveryFlow);
+            document.getElementById('delivery-no').addEventListener('click', finishSaleWithoutDelivery);
+            document.getElementById('cancel-delivery-confirmation').addEventListener('click', function() {
+                closeDeliveryConfirmationModal();
+                showNotification("Venda cancelada", "info");
+                currentSale = null;
+                // CORREÇÃO: Limpar pedido pendente se cancelar
+                pendingPrintOrder = null;
+            });
+            
+            // NOVO: Modal de confirmação de impressão
+            document.getElementById('confirm-print').addEventListener('click', confirmPrintAfterSale);
+            document.getElementById('cancel-print').addEventListener('click', function() {
+                closePrintConfirmationModal();
+                // CORREÇÃO: Limpar pedido pendente se cancelar impressão
+                pendingPrintOrder = null;
+                showNotification("Impressão cancelada", "info");
             });
             
             // Modal de senha
@@ -3506,6 +3836,18 @@
                     if (document.getElementById('driver-modal').classList.contains('active')) {
                         closeDriverModal();
                     }
+                    if (document.getElementById('delivery-confirmation-modal').classList.contains('active')) {
+                        closeDeliveryConfirmationModal();
+                        currentSale = null;
+                        pendingPrintOrder = null;
+                    }
+                    if (document.getElementById('payment-modal').classList.contains('active')) {
+                        closePaymentModal();
+                    }
+                    if (document.getElementById('print-confirmation-modal').classList.contains('active')) {
+                        closePrintConfirmationModal();
+                        pendingPrintOrder = null;
+                    }
                 }
                 // Permitir Enter no campo de senha
                 if (e.key === 'Enter' && document.getElementById('admin-password') === document.activeElement) {
@@ -3514,6 +3856,10 @@
                 // Permitir Enter no campo do entregador
                 if (e.key === 'Enter' && document.getElementById('driver-name-input') === document.activeElement) {
                     document.getElementById('confirm-driver').click();
+                }
+                // Permitir Enter no campo de pagamento
+                if (e.key === 'Enter' && document.getElementById('payment-modal').classList.contains('active') && selectedPaymentMethod) {
+                    document.getElementById('confirm-payment-modal').click();
                 }
             });
             
@@ -3532,6 +3878,9 @@
 
         // Inicializar o sistema
         document.addEventListener('DOMContentLoaded', function() {
+            // Verificar e resetar dados diários
+            checkAndResetDailyData();
+            
             initializeProducts();
             initializeEventListeners();
             updateOrderSummary();
@@ -3539,6 +3888,7 @@
             loadDailyExpenses();
             loadDeliveryData();
             updatePrintedOrder();
+            updateDayInfo();
             
             // Configurar mês atual nos seletores
             const currentMonth = new Date().getMonth();
@@ -3552,6 +3902,9 @@
             
             // Inicializar na aba PDV
             switchTab('pdv');
+            
+            // Configurar verificação periódica de reset (a cada hora)
+            setInterval(checkAndResetDailyData, 60 * 60 * 1000); // 1 hora
         });
     </script>
 </body>
