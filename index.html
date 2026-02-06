@@ -682,7 +682,7 @@
             color: var(--delivery-color);
         }
 
-        /* Área de Mesas */
+        /* Área de Mesas - NOVA VERSÃO */
         .tables-section {
             background: var(--light-color);
             border-radius: 10px;
@@ -720,12 +720,13 @@
         }
 
         .tables-list {
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
             border: 1px solid #eee;
             border-radius: 8px;
             padding: 10px;
             background: white;
+            margin-bottom: 15px;
         }
 
         .table-item {
@@ -803,6 +804,61 @@
             padding: 20px;
             color: #777;
             font-style: italic;
+        }
+
+        /* Detalhes da Mesa Ativa */
+        .active-table-details {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid var(--table-color);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .active-table-details.active {
+            display: block;
+        }
+
+        .active-table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .active-table-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--table-color);
+        }
+
+        .active-table-items {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .active-table-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .active-table-item:last-child {
+            border-bottom: none;
+        }
+
+        .active-table-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 2px solid #eee;
         }
 
         .action-buttons {
@@ -1341,16 +1397,16 @@
             color: #666;
         }
 
-        /* Modal de Sabores - COM QUANTIDADE */
+        /* Modal de Sabores - COM QUANTIDADE E CASADINHO */
         .flavors-modal {
-            max-width: 500px;
+            max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
         }
 
         .flavors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -1425,6 +1481,47 @@
             color: var(--secondary-color);
             min-width: 30px;
             text-align: center;
+        }
+
+        /* Opção Casadinho */
+        .casadinho-option {
+            background: #fff3cd;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #ffc107;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .casadinho-option:hover {
+            background: #ffeaa7;
+            transform: translateY(-3px);
+        }
+
+        .casadinho-option.selected {
+            background-color: #ffeaa7;
+            border-color: #f39c12;
+        }
+
+        .casadinho-title {
+            font-weight: 700;
+            color: #d35400;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .casadinho-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .casadinho-price {
+            font-weight: 700;
+            color: #e74c3c;
+            font-size: 1.1rem;
         }
 
         /* Modal de Entregador */
@@ -2050,7 +2147,7 @@
                     </div>
                 </div>
 
-                <!-- Área de Mesas Ativas -->
+                <!-- Área de Mesas Ativas - MODIFICADA -->
                 <div class="tables-section">
                     <h3 class="category-title"><i class="fas fa-chair"></i> Mesas Ativas</h3>
                     <div class="tables-controls">
@@ -2063,6 +2160,33 @@
                     </div>
                     <div class="tables-list" id="tables-list">
                         <p class="no-tables-message" id="no-tables-message">Nenhuma mesa ativa no momento.</p>
+                    </div>
+                    
+                    <!-- Detalhes da Mesa Ativa - NOVA SEÇÃO -->
+                    <div class="active-table-details" id="active-table-details">
+                        <div class="active-table-header">
+                            <div class="active-table-title" id="active-table-title">Mesa X</div>
+                            <button class="btn btn-register" id="finish-table-btn" style="padding: 8px 15px; font-size: 0.9rem;">
+                                <i class="fas fa-check-circle"></i> Fechar Mesa
+                            </button>
+                        </div>
+                        <div class="active-table-items" id="active-table-items">
+                            <!-- Itens da mesa serão inseridos aqui -->
+                        </div>
+                        <div class="active-table-footer">
+                            <div>
+                                <div style="font-weight: 700; color: var(--secondary-color);" id="active-table-total">Total: R$ 0,00</div>
+                                <div style="font-size: 0.8rem; color: #666;" id="active-table-status">Status: Aberta</div>
+                            </div>
+                            <div class="table-edit-controls">
+                                <button class="btn btn-cancel" id="add-to-table-btn" style="padding: 8px 15px; font-size: 0.9rem;">
+                                    <i class="fas fa-plus-circle"></i> Adicionar Pedido
+                                </button>
+                                <button class="btn btn-clear" id="edit-table-items-btn" style="padding: 8px 15px; font-size: 0.9rem;">
+                                    <i class="fas fa-edit"></i> Editar Itens
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -2369,7 +2493,7 @@
         </div>
     </div>
     
-    <!-- Modal de Sabores (COM QUANTIDADE) -->
+    <!-- Modal de Sabores (COM QUANTIDADE E CASADINHO) -->
     <div class="modal-overlay" id="flavors-modal">
         <div class="modal flavors-modal">
             <h3 class="modal-title">
@@ -2378,6 +2502,20 @@
             <p style="margin-bottom: 20px; color: #666;" id="selected-size-info">
                 <!-- Tamanho selecionado será inserido aqui -->
             </p>
+            
+            <!-- Opção Casadinho - NOVA SEÇÃO -->
+            <div class="casadinho-option" id="casadinho-option">
+                <div class="casadinho-title">
+                    <i class="fas fa-heart"></i> CASADINHO
+                </div>
+                <div class="casadinho-description">
+                    Adicione essa delícia especial ao seu açaí!
+                </div>
+                <div class="casadinho-price">
+                    + R$ 1,00 por copo
+                </div>
+            </div>
+            
             <div class="flavors-grid" id="flavors-grid">
                 <!-- Sabores serão inseridos via JavaScript -->
             </div>
@@ -2602,6 +2740,31 @@
         </div>
     </div>
     
+    <!-- Modal de Edição de Itens da Mesa -->
+    <div class="modal-overlay" id="edit-table-items-modal">
+        <div class="modal" style="max-width: 600px;">
+            <h3 class="modal-title">
+                <i class="fas fa-edit"></i> Editar Itens da Mesa
+            </h3>
+            <p style="margin-bottom: 20px; color: #666;">
+                Edite ou remova itens da mesa antes de fechar:
+            </p>
+            
+            <div id="edit-table-items-container" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px;">
+                <!-- Itens da mesa para edição serão inseridos aqui -->
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-confirm" id="save-table-edits">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+                <button class="modal-btn modal-btn-cancel" id="cancel-table-edits">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <p>Sistema PDV Açaiteria &copy; 2023 - Controle Completo de Vendas, Mesas e Delivery</p>
     </footer>
@@ -2631,7 +2794,7 @@
             ]
         };
 
-        // Sabores do cardápio
+        // Sabores do cardápio - COM O SABOR "MONTADO"
         const flavors = [
             { id: 1, name: "Açaí Tropical" },
             { id: 2, name: "Açaí Sonho de Valsa" },
@@ -2642,7 +2805,8 @@
             { id: 7, name: "Açaí Paçoca" },
             { id: 8, name: "Açaí Amendoim" },
             { id: 9, name: "Açaí Chocolate" },
-            { id: 10, name: "Açaí Nutella com Morango" }
+            { id: 10, name: "Açaí Nutella com Morango" },
+            { id: 11, name: "Montado" }
         ];
 
         // Formas de pagamento
@@ -2662,6 +2826,7 @@
 
         // Configurações do delivery
         const STANDARD_DELIVERY_FEE = 4.00;
+        const CASADINHO_FEE = 1.00;
 
         // Estado do sistema
         let currentOrder = [];
@@ -2681,10 +2846,14 @@
         let selectedAcaiSize = null;
         let selectedFlavor = null;
         let selectedQuantity = 1;
+        let casadinhoAdded = false;
         let currentSale = null;
         let isDeliveryFlow = false;
         let pendingPrintOrder = null;
         let activeTables = [];
+        let activeTableDetailsVisible = false;
+        let editingTableItems = false;
+        let editedTableItems = [];
         
         // Controle de caixa
         let cashRegister = {
@@ -2738,6 +2907,7 @@
                 deliveryDriverName = "";
                 selectedTable = null;
                 activeTables = [];
+                activeTableDetailsVisible = false;
                 
                 // Fechar caixa se estiver aberto
                 if (cashRegister.isOpen) {
@@ -2763,6 +2933,7 @@
                 renderDailyExpenses();
                 updateDeliveryDisplay();
                 renderTablesList();
+                hideActiveTableDetails();
                 updateDayInfo();
                 updateCashRegisterDisplay();
                 
@@ -2989,6 +3160,18 @@
             const savedTables = JSON.parse(localStorage.getItem('active_tables') || '[]');
             activeTables = savedTables;
             renderTablesList();
+            
+            // Se houver mesa selecionada, mostrar seus detalhes
+            if (selectedTable) {
+                const tableExists = activeTables.find(t => t.id === selectedTable.id);
+                if (tableExists) {
+                    selectedTable = tableExists;
+                    showActiveTableDetails(selectedTable);
+                } else {
+                    selectedTable = null;
+                    hideActiveTableDetails();
+                }
+            }
         }
 
         // Salvar mesas ativas
@@ -3047,7 +3230,10 @@
             document.querySelectorAll('.table-action-btn.view').forEach(button => {
                 button.addEventListener('click', function() {
                     const tableId = parseInt(this.getAttribute('data-id'));
-                    loadTableForEditing(tableId);
+                    const table = activeTables.find(t => t.id === tableId);
+                    if (table) {
+                        showActiveTableDetails(table);
+                    }
                 });
             });
             
@@ -3068,36 +3254,256 @@
             });
         }
 
-        // Carregar mesa para edição
-        function loadTableForEditing(tableId) {
-            const table = activeTables.find(t => t.id === tableId);
-            if (!table) return;
+        // Mostrar detalhes da mesa ativa
+        function showActiveTableDetails(table) {
+            selectedTable = table;
+            activeTableDetailsVisible = true;
             
-            // Limpar pedido atual
-            currentOrder = [];
+            const detailsContainer = document.getElementById('active-table-details');
+            const titleElement = document.getElementById('active-table-title');
+            const itemsContainer = document.getElementById('active-table-items');
+            const totalElement = document.getElementById('active-table-total');
+            const statusElement = document.getElementById('active-table-status');
             
-            // Adicionar último pedido da mesa ao pedido atual (para edição)
-            if (table.orders.length > 0) {
-                const lastOrder = table.orders[table.orders.length - 1];
-                lastOrder.items.forEach(item => {
-                    currentOrder.push({
-                        id: Date.now() + Math.random(),
-                        productId: item.productId,
-                        name: item.name,
-                        price: item.price,
-                        quantity: item.quantity || 1,
-                        details: item.details,
-                        size: item.size,
-                        flavor: item.flavor
+            // Atualizar informações
+            titleElement.textContent = table.name;
+            
+            // Limpar itens anteriores
+            itemsContainer.innerHTML = '';
+            
+            // Adicionar todos os itens de todos os pedidos da mesa
+            let allItems = [];
+            table.orders.forEach(order => {
+                order.items.forEach(item => {
+                    // Adicionar ID do pedido para referência
+                    const itemWithRef = {
+                        ...item,
+                        orderId: order.id,
+                        orderDate: order.date
+                    };
+                    allItems.push(itemWithRef);
+                });
+            });
+            
+            // Agrupar itens iguais (mas manter referências individuais para edição)
+            const groupedItems = {};
+            allItems.forEach(item => {
+                const key = `${item.name}|${item.details}`;
+                if (!groupedItems[key]) {
+                    groupedItems[key] = {
+                        ...item,
+                        quantity: 1,
+                        totalPrice: item.price,
+                        items: [item] // Armazenar itens individuais para edição
+                    };
+                } else {
+                    groupedItems[key].quantity += 1;
+                    groupedItems[key].totalPrice += item.price;
+                    groupedItems[key].items.push(item);
+                }
+            });
+            
+            // Renderizar itens agrupados
+            Object.values(groupedItems).forEach(groupedItem => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'active-table-item';
+                
+                let itemNameHtml = `<span style="font-weight: 500;">${groupedItem.name}`;
+                if (groupedItem.quantity > 1) {
+                    itemNameHtml += ` (${groupedItem.quantity}x)`;
+                }
+                itemNameHtml += `</span>`;
+                
+                if (groupedItem.details) {
+                    itemNameHtml += `<div style="font-size: 0.8rem; color: #666;">${groupedItem.details}</div>`;
+                }
+                
+                itemElement.innerHTML = `
+                    <div style="flex: 2;">
+                        ${itemNameHtml}
+                    </div>
+                    <span style="font-weight: 600; color: var(--secondary-color);">
+                        ${formatCurrency(groupedItem.totalPrice)}
+                    </span>
+                `;
+                
+                itemsContainer.appendChild(itemElement);
+            });
+            
+            // Calcular total da mesa
+            const tableTotal = table.orders.reduce((sum, order) => sum + order.total, 0);
+            totalElement.textContent = `Total: ${formatCurrency(tableTotal)}`;
+            
+            // Atualizar status
+            const openedTime = new Date(table.openedAt).toLocaleTimeString('pt-BR').substring(0, 5);
+            statusElement.textContent = `Status: Aberta desde ${openedTime} | ${table.orders.length} pedido(s)`;
+            
+            // Mostrar container
+            detailsContainer.classList.add('active');
+            
+            // Rolar para a seção de detalhes
+            detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Esconder detalhes da mesa ativa
+        function hideActiveTableDetails() {
+            const detailsContainer = document.getElementById('active-table-details');
+            detailsContainer.classList.remove('active');
+            activeTableDetailsVisible = false;
+            selectedTable = null;
+        }
+
+        // Mostrar modal de edição de itens da mesa
+        function showEditTableItemsModal() {
+            if (!selectedTable) {
+                showNotification("Nenhuma mesa selecionada!", "error");
+                return;
+            }
+            
+            const modalContainer = document.getElementById('edit-table-items-container');
+            modalContainer.innerHTML = '';
+            
+            // Coletar todos os itens de todos os pedidos da mesa
+            let allItems = [];
+            selectedTable.orders.forEach(order => {
+                order.items.forEach(item => {
+                    // Adicionar referências para edição
+                    const itemWithRef = {
+                        ...item,
+                        orderId: order.id,
+                        tableId: selectedTable.id,
+                        originalItem: JSON.parse(JSON.stringify(item)) // Cópia para referência
+                    };
+                    allItems.push(itemWithRef);
+                });
+            });
+            
+            if (allItems.length === 0) {
+                modalContainer.innerHTML = '<p style="text-align: center; color: #666;">Nenhum item na mesa para editar.</p>';
+            } else {
+                // Agrupar itens iguais para exibição
+                const groupedItems = {};
+                allItems.forEach(item => {
+                    const key = `${item.name}|${item.details}`;
+                    if (!groupedItems[key]) {
+                        groupedItems[key] = {
+                            ...item,
+                            quantity: 1,
+                            items: [item]
+                        };
+                    } else {
+                        groupedItems[key].quantity += 1;
+                        groupedItems[key].items.push(item);
+                    }
+                });
+                
+                // Criar elementos para cada grupo de itens
+                Object.values(groupedItems).forEach((groupedItem, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'edit-table-item';
+                    itemElement.style.display = 'flex';
+                    itemElement.style.justifyContent = 'space-between';
+                    itemElement.style.alignItems = 'center';
+                    itemElement.style.padding = '12px';
+                    itemElement.style.borderBottom = '1px solid #eee';
+                    itemElement.style.backgroundColor = index % 2 === 0 ? '#f9f9f9' : 'white';
+                    
+                    let detailsHtml = '';
+                    if (groupedItem.details) {
+                        detailsHtml = `<div style="font-size: 0.8rem; color: #666;">${groupedItem.details}</div>`;
+                    }
+                    
+                    itemElement.innerHTML = `
+                        <div style="flex: 2;">
+                            <div style="font-weight: 500;">${groupedItem.name} (${groupedItem.quantity}x)</div>
+                            ${detailsHtml}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-weight: 600; color: var(--secondary-color);">
+                                ${formatCurrency(groupedItem.price * groupedItem.quantity)}
+                            </span>
+                            <button class="remove-table-item-btn" data-key="${groupedItem.name}|${groupedItem.details}" style="color: var(--danger-color); background: none; border: none; cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.3s;">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </div>
+                    `;
+                    
+                    modalContainer.appendChild(itemElement);
+                });
+                
+                // Adicionar event listeners aos botões de remover
+                document.querySelectorAll('.remove-table-item-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const itemKey = this.getAttribute('data-key');
+                        removeItemFromTable(itemKey);
                     });
                 });
             }
             
-            selectedTable = table;
-            renderOrderItems();
-            updateOrderSummary();
+            document.getElementById('edit-table-items-modal').classList.add('active');
+        }
+
+        // Remover item da mesa (durante edição)
+        function removeItemFromTable(itemKey) {
+            if (!selectedTable) return;
             
-            showNotification(`Mesa ${table.name} carregada para edição!`);
+            // Encontrar o grupo de itens correspondente
+            let allItems = [];
+            selectedTable.orders.forEach(order => {
+                order.items.forEach(item => {
+                    const key = `${item.name}|${item.details}`;
+                    if (key === itemKey) {
+                        allItems.push({...item, orderId: order.id});
+                    }
+                });
+            });
+            
+            if (allItems.length === 0) return;
+            
+            // Remover o primeiro item do grupo
+            const itemToRemove = allItems[0];
+            
+            // Encontrar o pedido correspondente
+            const orderIndex = selectedTable.orders.findIndex(order => order.id === itemToRemove.orderId);
+            if (orderIndex !== -1) {
+                // Encontrar o item no pedido
+                const itemIndex = selectedTable.orders[orderIndex].items.findIndex(item => 
+                    item.id === itemToRemove.id && 
+                    item.name === itemToRemove.name && 
+                    item.details === itemToRemove.details
+                );
+                
+                if (itemIndex !== -1) {
+                    // Remover o item
+                    selectedTable.orders[orderIndex].items.splice(itemIndex, 1);
+                    
+                    // Recalcular total do pedido
+                    selectedTable.orders[orderIndex].total = selectedTable.orders[orderIndex].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    selectedTable.orders[orderIndex].subtotal = selectedTable.orders[orderIndex].total;
+                    
+                    // Se o pedido ficou vazio, remover o pedido inteiro
+                    if (selectedTable.orders[orderIndex].items.length === 0) {
+                        selectedTable.orders.splice(orderIndex, 1);
+                    }
+                    
+                    // Salvar alterações
+                    saveActiveTables();
+                    
+                    // Atualizar visualização
+                    showEditTableItemsModal();
+                    showActiveTableDetails(selectedTable);
+                    renderTablesList();
+                    
+                    showNotification("Item removido da mesa!");
+                }
+            }
+        }
+
+        // Salvar edições da mesa
+        function saveTableEdits() {
+            // As alterações já foram salvas durante a remoção, então só fechar o modal
+            document.getElementById('edit-table-items-modal').classList.remove('active');
+            showNotification("Alterações na mesa salvas!");
         }
 
         // Finalizar venda da mesa
@@ -3105,10 +3511,17 @@
             const table = activeTables.find(t => t.id === tableId);
             if (!table) return;
             
+            // Verificar se a mesa tem itens
+            const totalItems = table.orders.reduce((sum, order) => sum + order.items.length, 0);
+            if (totalItems === 0) {
+                showNotification("A mesa não tem itens para fechar!", "warning");
+                return;
+            }
+            
             // Calcular total da mesa
             const tableTotal = table.orders.reduce((sum, order) => sum + order.total, 0);
             
-            // Perguntar tipo de pagamento
+            // Preparar dados da venda
             selectedSaleType = 'table';
             currentSale = {
                 id: orderCounter++,
@@ -3135,6 +3548,11 @@
         function cancelTable(tableId) {
             const tableIndex = activeTables.findIndex(t => t.id === tableId);
             if (tableIndex !== -1) {
+                // Se a mesa cancelada for a mesma que está sendo exibida, esconder detalhes
+                if (selectedTable && selectedTable.id === tableId) {
+                    hideActiveTableDetails();
+                }
+                
                 activeTables.splice(tableIndex, 1);
                 saveActiveTables();
                 renderTablesList();
@@ -3159,38 +3577,48 @@
             renderTablesList();
             
             selectedTable = newTable;
+            showActiveTableDetails(newTable);
             
             showNotification(`Mesa ${tableName} aberta!`);
             return newTable;
         }
 
-        // Salvar pedido na mesa
-        function saveOrderToTable() {
-            if (!selectedTable || currentOrder.length === 0) return false;
-            
-            const tableIndex = activeTables.findIndex(t => t.id === selectedTable.id);
-            if (tableIndex === -1) return false;
+        // Adicionar pedido atual à mesa
+        function addOrderToTable() {
+            if (!selectedTable || currentOrder.length === 0) {
+                showNotification("Selecione uma mesa e adicione itens ao pedido!", "error");
+                return;
+            }
             
             const orderTotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             const tableOrder = {
                 id: Date.now(),
                 date: new Date().toISOString(),
-                items: [...currentOrder],
+                items: JSON.parse(JSON.stringify(currentOrder)), // Cópia profunda
                 subtotal: orderTotal,
                 total: orderTotal
             };
             
-            activeTables[tableIndex].orders.push(tableOrder);
-            saveActiveTables();
-            renderTablesList();
+            const tableIndex = activeTables.findIndex(t => t.id === selectedTable.id);
+            if (tableIndex !== -1) {
+                activeTables[tableIndex].orders.push(tableOrder);
+                saveActiveTables();
+                renderTablesList();
+                
+                // Atualizar detalhes da mesa
+                showActiveTableDetails(activeTables[tableIndex]);
+                
+                // Limpar pedido atual
+                currentOrder = [];
+                renderOrderItems();
+                updateOrderSummary();
+                
+                showNotification(`Pedido adicionado à mesa ${selectedTable.name}!`);
+                return true;
+            }
             
-            // Limpar pedido atual
-            currentOrder = [];
-            renderOrderItems();
-            updateOrderSummary();
-            
-            return true;
+            return false;
         }
 
         // Mostrar modal de mesas
@@ -3369,7 +3797,8 @@
                 quantity: quantity,
                 details: product.flavor ? `Sabor: ${product.flavor}` : '',
                 size: product.size,
-                flavor: product.flavor
+                flavor: product.flavor,
+                casadinho: product.casadinho || false
             };
             
             currentOrder.push(orderItem);
@@ -3379,11 +3808,12 @@
             showNotification(`${product.name} adicionado ao pedido!`);
         }
 
-        // Mostrar modal de sabores (COM QUANTIDADE)
+        // Mostrar modal de sabores (COM QUANTIDADE E CASADINHO)
         function showFlavorsModal(product) {
             selectedAcaiSize = product;
             selectedQuantity = 1;
             selectedFlavor = null;
+            casadinhoAdded = false;
             
             document.getElementById('selected-size-info').textContent = 
                 `Tamanho selecionado: ${product.size} - ${product.ml} - ${formatCurrency(product.price)}`;
@@ -3394,6 +3824,12 @@
                 card.querySelector('.flavor-quantity').textContent = '1';
             });
             
+            // Resetar seleção de casadinho
+            const casadinhoOption = document.getElementById('casadinho-option');
+            if (casadinhoOption) {
+                casadinhoOption.classList.remove('selected');
+            }
+            
             document.getElementById('flavors-modal').classList.add('active');
         }
 
@@ -3403,25 +3839,40 @@
             selectedAcaiSize = null;
             selectedFlavor = null;
             selectedQuantity = 1;
+            casadinhoAdded = false;
         }
 
-        // Adicionar açaí com sabor ao pedido
+        // Adicionar açaí com sabor ao pedido (COM CASADINHO)
         function addAcaiWithFlavor() {
             if (!selectedAcaiSize || !selectedFlavor) {
                 showNotification("Selecione um sabor primeiro!", "error");
                 return;
             }
             
+            // Verificar se casadinho foi selecionado
+            const casadinhoOption = document.getElementById('casadinho-option');
+            const isCasadinho = casadinhoOption.classList.contains('selected');
+            
             for (let i = 0; i < selectedQuantity; i++) {
+                let itemPrice = selectedAcaiSize.price;
+                let itemDetails = `Sabor: ${selectedFlavor.name}`;
+                
+                // Adicionar casadinho se selecionado
+                if (isCasadinho) {
+                    itemPrice += CASADINHO_FEE;
+                    itemDetails += ` | Casadinho: +${formatCurrency(CASADINHO_FEE)}`;
+                }
+                
                 const orderItem = {
                     id: Date.now() + i,
                     productId: selectedAcaiSize.id,
                     name: `${selectedAcaiSize.name} - ${selectedFlavor.name}`,
-                    price: selectedAcaiSize.price,
+                    price: itemPrice,
                     quantity: 1,
-                    details: `Sabor: ${selectedFlavor.name}`,
+                    details: itemDetails,
                     size: selectedAcaiSize.size,
-                    flavor: selectedFlavor.name
+                    flavor: selectedFlavor.name,
+                    casadinho: isCasadinho
                 };
                 
                 currentOrder.push(orderItem);
@@ -3430,7 +3881,12 @@
             renderOrderItems();
             updateOrderSummary();
             
-            showNotification(`${selectedAcaiSize.name} - ${selectedFlavor.name} (${selectedQuantity}x) adicionado ao pedido!`);
+            let notificationMsg = `${selectedAcaiSize.name} - ${selectedFlavor.name} (${selectedQuantity}x) adicionado ao pedido!`;
+            if (isCasadinho) {
+                notificationMsg += ` Com Casadinho (+${formatCurrency(CASADINHO_FEE)} por copo)`;
+            }
+            
+            showNotification(notificationMsg);
             closeFlavorsModal();
         }
 
@@ -3584,31 +4040,65 @@
                 cashReceived: selectedPaymentMethod === 'dinheiro' ? parseFloat(document.getElementById('cash-received').value) || 0 : 0
             };
             
-            // Limpar pedido atual
-            currentOrder = [];
-            selectedPaymentMethod = null;
-            renderOrderItems();
-            updateOrderSummary();
-            closePaymentModal();
-            
-            // Salvar pedido para impressão
-            pendingPrintOrder = pedidoParaImpressao;
-            
             // Processar de acordo com o tipo de venda
             if (selectedSaleType === 'table') {
-                // Se for mesa, salvar na mesa atual
+                // Se for mesa, adicionar à mesa atual
                 if (selectedTable) {
-                    saveOrderToTable();
+                    const orderTotal = currentSale.total;
+                    const tableOrder = {
+                        id: Date.now(),
+                        date: new Date().toISOString(),
+                        items: currentSale.items,
+                        subtotal: orderTotal,
+                        total: orderTotal
+                    };
+                    
+                    const tableIndex = activeTables.findIndex(t => t.id === selectedTable.id);
+                    if (tableIndex !== -1) {
+                        activeTables[tableIndex].orders.push(tableOrder);
+                        saveActiveTables();
+                        renderTablesList();
+                        showActiveTableDetails(activeTables[tableIndex]);
+                        
+                        // Limpar pedido atual
+                        currentOrder = [];
+                        selectedPaymentMethod = null;
+                        renderOrderItems();
+                        updateOrderSummary();
+                        
+                        showNotification(`Pedido adicionado à mesa ${selectedTable.name}!`);
+                        
+                        // Fechar modal de pagamento
+                        closePaymentModal();
+                        
+                        // Limpar venda atual (a mesa continua aberta)
+                        currentSale = null;
+                        pendingPrintOrder = null;
+                        
+                        // Mostrar modal de confirmação de impressão
+                        showPrintConfirmationModal();
+                        return;
+                    }
                 }
-                
-                // Mostrar modal de confirmação de impressão
-                showPrintConfirmationModal();
-            } else if (selectedSaleType === 'delivery') {
-                // Se for delivery, mostrar seção de delivery
-                startDeliveryFlow();
             } else {
-                // Se for retirada, mostrar modal de impressão
-                showPrintConfirmationModal();
+                // Para outros tipos de venda (delivery/retirada)
+                // Limpar pedido atual
+                currentOrder = [];
+                selectedPaymentMethod = null;
+                renderOrderItems();
+                updateOrderSummary();
+                closePaymentModal();
+                
+                // Salvar pedido para impressão
+                pendingPrintOrder = pedidoParaImpressao;
+                
+                if (selectedSaleType === 'delivery') {
+                    // Se for delivery, mostrar seção de delivery
+                    startDeliveryFlow();
+                } else {
+                    // Se for retirada, mostrar modal de impressão
+                    showPrintConfirmationModal();
+                }
             }
         }
 
@@ -3780,7 +4270,6 @@
             
             if (confirm("Tem certeza que deseja limpar o pedido atual?")) {
                 currentOrder = [];
-                selectedTable = null;
                 renderOrderItems();
                 updateOrderSummary();
                 showNotification("Pedido limpo com sucesso!");
@@ -3796,7 +4285,6 @@
             
             if (confirm("Deseja cancelar o pedido atual?")) {
                 currentOrder = [];
-                selectedTable = null;
                 renderOrderItems();
                 updateOrderSummary();
                 showNotification("Pedido cancelado!");
@@ -4278,77 +4766,6 @@
             showPasswordModal();
         }
 
-        // Validar senha e executar ação
-        function validateAndExecute() {
-            const password = document.getElementById('admin-password').value;
-            
-            if (password === ADMIN_PASSWORD) {
-                if (currentModalAction === 'clear_all') {
-                    // Limpar todos os dados
-                    localStorage.removeItem('açaiteria_sales');
-                    localStorage.removeItem('daily_expenses');
-                    localStorage.removeItem('today_sales');
-                    localStorage.removeItem('deliveries');
-                    localStorage.removeItem('delivery_count');
-                    localStorage.removeItem('delivery_total');
-                    localStorage.removeItem('delivery_fee');
-                    localStorage.removeItem('delivery_driver');
-                    localStorage.removeItem('active_tables');
-                    localStorage.removeItem('cash_register');
-                    localStorage.removeItem('cash_closings');
-                    localStorage.removeItem(LAST_RESET_KEY);
-                    
-                    orderCounter = 1;
-                    tableCounter = 1;
-                    currentMonthFilter = null;
-                    currentOrder = [];
-                    dailyExpenses = [];
-                    deliveryCount = 0;
-                    deliveryTotalValue = 0;
-                    deliveryFee = STANDARD_DELIVERY_FEE;
-                    deliveryDriverName = "";
-                    selectedTable = null;
-                    activeTables = [];
-                    cashRegister = {
-                        isOpen: false,
-                        initialAmount: 0,
-                        currentAmount: 0,
-                        cashSales: 0,
-                        cardSales: 0,
-                        pixSales: 0,
-                        cashOut: 0,
-                        openingTime: null,
-                        closingTime: null
-                    };
-                    
-                    showNotification("Todos os dados foram apagados com sucesso!", "warning");
-                    
-                    // Atualizar todas as telas
-                    if (document.getElementById('pdv-container').classList.contains('active')) {
-                        renderOrderItems();
-                        updateOrderSummary();
-                        renderDailyExpenses();
-                        updateDeliveryDisplay();
-                        renderTablesList();
-                        updateDayInfo();
-                        updateCashRegisterDisplay();
-                    }
-                    if (document.getElementById('reports-container').classList.contains('active')) {
-                        loadSalesReport();
-                    }
-                    
-                } else if (currentModalAction === 'cancel_sale') {
-                    executeSaleCancellation();
-                }
-                
-                closePasswordModal();
-            } else {
-                showNotification("Senha incorreta!", "error");
-                document.getElementById('admin-password').value = '';
-                document.getElementById('admin-password').focus();
-            }
-        }
-
         // Obter vendas filtradas (por mês ou todas)
         function getFilteredSales() {
             const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
@@ -4749,7 +5166,7 @@
                 bebidasContainer.appendChild(productElement);
             });
             
-            // Sabores no modal (COM QUANTIDADE)
+            // Sabores no modal (COM QUANTIDADE) - INCLUINDO "MONTADO"
             flavors.forEach(flavor => {
                 const flavorElement = document.createElement('div');
                 flavorElement.className = 'flavor-card';
@@ -4813,6 +5230,15 @@
                 
                 flavorsGrid.appendChild(flavorElement);
             });
+            
+            // Adicionar event listener para opção Casadinho
+            const casadinhoOption = document.getElementById('casadinho-option');
+            if (casadinhoOption) {
+                casadinhoOption.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    casadinhoAdded = this.classList.contains('selected');
+                });
+            }
         }
 
         // Popular anos nos seletores
@@ -4906,6 +5332,31 @@
             updateCashRegisterDisplay();
         }
 
+        // Função para validar e executar ação com senha
+        function validateAndExecute() {
+            const password = document.getElementById('admin-password').value;
+            
+            if (password !== ADMIN_PASSWORD) {
+                showNotification("Senha incorreta!", "error");
+                return;
+            }
+            
+            if (currentModalAction === 'clear_all') {
+                // Limpar histórico de vendas
+                localStorage.removeItem('açaiteria_sales');
+                localStorage.removeItem('today_sales');
+                localStorage.removeItem('deliveries');
+                localStorage.removeItem('cash_closings');
+                
+                showNotification("Histórico de vendas limpo com sucesso!", "warning");
+                loadSalesReport();
+            } else if (currentModalAction === 'cancel_sale') {
+                executeSaleCancellation();
+            }
+            
+            closePasswordModal();
+        }
+
         // Inicializar event listeners
         function initializeEventListeners() {
             // Botões do PDV
@@ -4915,14 +5366,8 @@
                     return;
                 }
                 
-                // Se já tiver uma mesa selecionada, ir direto para pagamento
-                if (selectedTable) {
-                    selectedSaleType = 'table';
-                    showPaymentModal();
-                } else {
-                    // Caso contrário, mostrar modal de tipo de venda
-                    showSaleTypeModal();
-                }
+                // Mostrar modal de tipo de venda
+                showSaleTypeModal();
             });
             
             document.getElementById('clear-order').addEventListener('click', clearOrder);
@@ -4942,6 +5387,30 @@
             document.getElementById('refresh-tables-btn').addEventListener('click', function() {
                 loadActiveTables();
                 showNotification("Lista de mesas atualizada!");
+            });
+            
+            // Botão para editar itens da mesa
+            document.getElementById('edit-table-items-btn').addEventListener('click', showEditTableItemsModal);
+            
+            // Botões da Mesa Ativa
+            document.getElementById('finish-table-btn').addEventListener('click', function() {
+                if (!selectedTable) {
+                    showNotification("Nenhuma mesa selecionada!", "error");
+                    return;
+                }
+                finishTableSale(selectedTable.id);
+            });
+            
+            document.getElementById('add-to-table-btn').addEventListener('click', function() {
+                if (currentOrder.length === 0) {
+                    showNotification("Adicione itens ao pedido antes de adicionar à mesa!", "error");
+                    return;
+                }
+                
+                if (addOrderToTable()) {
+                    // Focar no campo de pedido atual para próximo pedido
+                    document.getElementById('register-order').focus();
+                }
             });
             
             // Botões de Caixa
@@ -5049,13 +5518,13 @@
                 const existingTable = activeTables.find(table => table.name === tableName);
                 if (existingTable) {
                     selectedTable = existingTable;
+                    showActiveTableDetails(existingTable);
                     showNotification(`Mesa ${tableName} selecionada!`);
                 } else {
                     selectedTable = addTable(tableName);
                 }
                 
                 closeTableModal();
-                showPaymentModal();
             });
             
             document.getElementById('cancel-table').addEventListener('click', closeTableModal);
@@ -5202,6 +5671,13 @@
                 showNotification("Impressão cancelada", "info");
             });
             
+            // Modal de edição de itens da mesa
+            document.getElementById('save-table-edits').addEventListener('click', saveTableEdits);
+            document.getElementById('cancel-table-edits').addEventListener('click', function() {
+                document.getElementById('edit-table-items-modal').classList.remove('active');
+                showNotification("Edição cancelada", "info");
+            });
+            
             // Modal de senha
             document.getElementById('confirm-password').addEventListener('click', validateAndExecute);
             document.getElementById('cancel-password').addEventListener('click', closePasswordModal);
@@ -5241,6 +5717,9 @@
                     if (document.getElementById('print-confirmation-modal').classList.contains('active')) {
                         closePrintConfirmationModal();
                         pendingPrintOrder = null;
+                    }
+                    if (document.getElementById('edit-table-items-modal').classList.contains('active')) {
+                        document.getElementById('edit-table-items-modal').classList.remove('active');
                     }
                 }
                 // Permitir Enter no campo de senha
