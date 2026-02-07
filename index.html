@@ -682,7 +682,7 @@
             color: var(--delivery-color);
         }
 
-        /* Área de Mesas - NOVA VERSÃO */
+        /* Área de Mesas - MODIFICADA */
         .tables-section {
             background: var(--light-color);
             border-radius: 10px;
@@ -2147,7 +2147,7 @@
                     </div>
                 </div>
 
-                <!-- Área de Mesas Ativas - MODIFICADA -->
+                <!-- Área de Mesas Ativas - REORGANIZADA -->
                 <div class="tables-section">
                     <h3 class="category-title"><i class="fas fa-chair"></i> Mesas Ativas</h3>
                     <div class="tables-controls">
@@ -3583,11 +3583,16 @@
             return newTable;
         }
 
-        // Adicionar pedido atual à mesa
+        // Adicionar pedido atual à mesa - FUNÇÃO CORRIGIDA
         function addOrderToTable() {
-            if (!selectedTable || currentOrder.length === 0) {
-                showNotification("Selecione uma mesa e adicione itens ao pedido!", "error");
-                return;
+            if (!selectedTable) {
+                showNotification("Selecione uma mesa primeiro!", "error");
+                return false;
+            }
+            
+            if (currentOrder.length === 0) {
+                showNotification("Adicione itens ao pedido antes de adicionar à mesa!", "error");
+                return false;
             }
             
             const orderTotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -3975,7 +3980,7 @@
             }
         }
 
-        // Registrar venda com forma de pagamento
+        // Registrar venda com forma de pagamento - FUNÇÃO CORRIGIDA
         function registerOrderWithPayment() {
             if (!selectedPaymentMethod) {
                 showNotification("Selecione uma forma de pagamento!", "error");
@@ -3990,8 +3995,10 @@
             
             // Calcular troco se for dinheiro
             let changeAmount = 0;
+            let cashReceived = 0;
+            
             if (selectedPaymentMethod === 'dinheiro') {
-                const cashReceived = parseFloat(document.getElementById('cash-received').value) || 0;
+                cashReceived = parseFloat(document.getElementById('cash-received').value) || 0;
                 const total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 
                 if (cashReceived < total) {
@@ -4037,7 +4044,7 @@
                 deliveryTotal: 0,
                 deliveryDriver: "",
                 change: changeAmount,
-                cashReceived: selectedPaymentMethod === 'dinheiro' ? parseFloat(document.getElementById('cash-received').value) || 0 : 0
+                cashReceived: selectedPaymentMethod === 'dinheiro' ? cashReceived : 0
             };
             
             // Processar de acordo com o tipo de venda
@@ -4079,9 +4086,24 @@
                         showPrintConfirmationModal();
                         return;
                     }
+                } else {
+                    showNotification("Nenhuma mesa selecionada!", "error");
+                    return;
                 }
             } else {
                 // Para outros tipos de venda (delivery/retirada)
+                // Salvar a venda primeiro
+                const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
+                sales.push(currentSale);
+                localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
+                
+                // Registrar também no histórico de vendas do dia
+                const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
+                todaySales.push(currentSale);
+                localStorage.setItem('today_sales', JSON.stringify(todaySales));
+                
+                showNotification(`Venda #${currentSale.id} registrada com sucesso!`);
+                
                 // Limpar pedido atual
                 currentOrder = [];
                 selectedPaymentMethod = null;
@@ -4091,6 +4113,9 @@
                 
                 // Salvar pedido para impressão
                 pendingPrintOrder = pedidoParaImpressao;
+                
+                // Atualizar informações do dia
+                updateDayInfo();
                 
                 if (selectedSaleType === 'delivery') {
                     // Se for delivery, mostrar seção de delivery
@@ -4102,9 +4127,30 @@
             }
         }
 
-        // Finalizar venda sem delivery
+        // Finalizar venda sem delivery - FUNÇÃO CORRIGIDA
         function finishSaleWithoutDelivery() {
-            if (!currentSale) return;
+            if (!currentSale) {
+                // Se não houver venda atual, criar uma nova
+                const total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                currentSale = {
+                    id: orderCounter++,
+                    date: new Date().toISOString(),
+                    items: [...currentOrder],
+                    subtotal: total,
+                    total: total,
+                    paymentMethod: selectedPaymentMethod,
+                    saleType: selectedSaleType,
+                    tableName: selectedTable ? selectedTable.name : null,
+                    tableId: selectedTable ? selectedTable.id : null,
+                    deliveryCount: 0,
+                    deliveryFee: 0,
+                    deliveryTotal: 0,
+                    deliveryDriver: "",
+                    change: 0,
+                    cashReceived: 0
+                };
+            }
             
             // Salvar venda
             const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
@@ -4149,9 +4195,12 @@
             closeSaleTypeModal();
         }
 
-        // Finalizar delivery e salvar venda
+        // Finalizar delivery e salvar venda - FUNÇÃO CORRIGIDA
         function finishDeliveryAndSaveSale() {
-            if (!currentSale) return;
+            if (!currentSale) {
+                showNotification("Nenhuma venda para finalizar!", "error");
+                return;
+            }
             
             // Atualizar venda com informações de delivery
             currentSale.deliveryCount = deliveryCount;
@@ -4159,15 +4208,21 @@
             currentSale.deliveryTotal = deliveryTotalValue;
             currentSale.deliveryDriver = deliveryDriverName;
             
-            // Salvar venda
-            const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
-            sales.push(currentSale);
-            localStorage.setItem('açaiteria_sales', JSON.stringify(sales));
+            // Atualizar o total da venda com o valor do delivery
+            currentSale.total = currentSale.subtotal + deliveryTotalValue;
             
-            // Registrar também no histórico de vendas do dia
+            // Salvar venda atualizada
+            const sales = JSON.parse(localStorage.getItem('açaiteria_sales') || '[]');
+            // Remover a venda antiga (sem delivery)
+            const updatedSales = sales.filter(sale => sale.id !== currentSale.id);
+            updatedSales.push(currentSale);
+            localStorage.setItem('açaiteria_sales', JSON.stringify(updatedSales));
+            
+            // Atualizar também no histórico do dia
             const todaySales = JSON.parse(localStorage.getItem('today_sales') || '[]');
-            todaySales.push(currentSale);
-            localStorage.setItem('today_sales', JSON.stringify(todaySales));
+            const updatedTodaySales = todaySales.filter(sale => sale.id !== currentSale.id);
+            updatedTodaySales.push(currentSale);
+            localStorage.setItem('today_sales', JSON.stringify(updatedTodaySales));
             
             // Registrar entregas no histórico
             if (deliveryCount > 0) {
@@ -5382,7 +5437,7 @@
             document.getElementById('finish-delivery').addEventListener('click', finishDeliveryAndSaveSale);
             document.getElementById('skip-delivery').addEventListener('click', skipDelivery);
             
-            // Botões de Mesas
+            // Botões de Mesas - CORRIGIDOS
             document.getElementById('open-table-modal-btn').addEventListener('click', showTableModal);
             document.getElementById('refresh-tables-btn').addEventListener('click', function() {
                 loadActiveTables();
@@ -5392,7 +5447,7 @@
             // Botão para editar itens da mesa
             document.getElementById('edit-table-items-btn').addEventListener('click', showEditTableItemsModal);
             
-            // Botões da Mesa Ativa
+            // Botões da Mesa Ativa - CORRIGIDOS
             document.getElementById('finish-table-btn').addEventListener('click', function() {
                 if (!selectedTable) {
                     showNotification("Nenhuma mesa selecionada!", "error");
@@ -5402,8 +5457,8 @@
             });
             
             document.getElementById('add-to-table-btn').addEventListener('click', function() {
-                if (currentOrder.length === 0) {
-                    showNotification("Adicione itens ao pedido antes de adicionar à mesa!", "error");
+                if (!selectedTable) {
+                    showNotification("Selecione uma mesa primeiro!", "error");
                     return;
                 }
                 
@@ -5473,7 +5528,7 @@
                 });
             });
             
-            // Botões do modal de tipo de venda
+            // Botões do modal de tipo de venda - CORRIGIDOS
             document.getElementById('confirm-sale-type').addEventListener('click', function() {
                 if (!selectedSaleType) {
                     showNotification("Selecione um tipo de venda!", "error");
@@ -5496,7 +5551,7 @@
                 showNotification("Seleção de tipo de venda cancelada", "info");
             });
             
-            // Botões do modal de mesa
+            // Botões do modal de mesa - CORRIGIDOS
             document.getElementById('confirm-table').addEventListener('click', function() {
                 const tableNameInput = document.getElementById('new-table-name');
                 let tableName = tableNameInput.value.trim();
@@ -5525,9 +5580,20 @@
                 }
                 
                 closeTableModal();
+                
+                // Se veio do modal de tipo de venda, mostrar modal de pagamento
+                if (selectedSaleType === 'table') {
+                    showPaymentModal();
+                }
             });
             
-            document.getElementById('cancel-table').addEventListener('click', closeTableModal);
+            document.getElementById('cancel-table').addEventListener('click', function() {
+                closeTableModal();
+                if (selectedSaleType === 'table') {
+                    // Se cancelou a seleção de mesa, voltar para seleção de tipo de venda
+                    showSaleTypeModal();
+                }
+            });
             
             // Opções de pagamento no modal
             document.querySelectorAll('.payment-option-modal').forEach(option => {
